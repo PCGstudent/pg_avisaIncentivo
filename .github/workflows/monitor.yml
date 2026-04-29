@@ -49,12 +49,23 @@ jobs:
 
       - name: Commit state
         run: |
-          if [ -n "$(git status --porcelain state.json)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add state.json
-            git commit -m "chore: update monitor state"
-            git push
-          else
+          if [ -z "$(git status --porcelain state.json)" ]; then
             echo "no state change to commit"
+            exit 0
           fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state.json
+          git commit -m "chore: update monitor state"
+          # Tolerate races with parallel runs: retry with rebase up to 5 times.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "pushed on attempt $i"
+              exit 0
+            fi
+            echo "push attempt $i failed, rebasing and retrying..."
+            git pull --rebase --autostash origin main || true
+            sleep 2
+          done
+          echo "WARN: failed to push state after 5 attempts (notifications already sent)"
+          exit 0
