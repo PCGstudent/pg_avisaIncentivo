@@ -75,7 +75,15 @@
     "consecutive_failures": 0
   },
   "ACAP_Noticias": {
-    "consecutive_failures": 1
+    "hash": "8d227c34db4da72f1877e06556b9f96657f26711128e10dbb4c410da6271150a",
+    "text": "ACAP | Home ACAP Sectores Estatísticas Comunicação Serviços menu ACAP Sectores Estatísticas Comunicação Serviços Adesão Contactos My ACAP Pesquisa PT | EN Fórum DPAI/ACAP - Para quem move o aftermarket Inscrições abertas: 29 de Maio | Auditório da Exponor. Saiba Mais Mercado Automóvel em Portugal Março 2026 Saiba Mais PRODUÇÃO AUTOMÓVEL EM PORTUGAL Março 2026 Saiba Mais Já verificou se o seu veículo tem recall? A ACAP, em parceria com o IMT e com o apoio da Direção-Geral do Consumidor (DGC), disponibiliza uma plataforma online que permite aos condutores verificar se um veículo está abrangido por alguma acção de recall Saiba Mais SCROLL Adesão Contactos My ACAP Pesquisa Redes Sociais Notícias Campanha de sensibilização para a recolha de óleos lubrificantes usados SOGILUB e ZERO lançam campanha de sensibilização para a recolha de óleos lubrificantes usados re(...) Melhores Centros da Rede VALORCAR 2025 Avaliação de desempenho na gestão e valorização de VFV e recursos Lubrificantes usados ganham nova relevância Num artigo publicado na Revista Indústria e Ambiente, Luís Gameiro, director-geral da Sogilub, des(...) O sector Automóvel em números 0 Empresas 0 mM Facturação / ano 0 % Receitas fiscais do estado 0 Trabalhadores Universo ACAP Ver Website Ver Website Ver Website Ver Website Ver Website Filiações Internacionais Ver Website Ver Website Ver Website Ver Website Fique a par das nossas novidades Aceito receber newsletters Li e aceito a política de privacidade Lisboa Morada Av.Torre de Belém, 29 1400-342 Lisboa Telefone +351 213 035 300* E-mail mail@acap.pt GPS 38º42'05\" N 9º12'50.4 W *(Custo de chamada para rede fixa nacional) Porto Morada Rua de Stª Catarina, 693, 4º 4000-454 Porto Telefone +351 222 005 606* E-mail porto@acap.pt GPS 41º09'08.4\"N 8º36'13.5\"W *(Custo de chamada para rede fixa nacional) Acompanhe a ACAP nas redes sociais Website ACAP com o apoio © 2026 design by ativait | development by designbinário . Todos os direitos reservados. Política de privacidade . Consulte aqui a Política de Concorrência ACAP.",
+    "last_changed": "2026-04-29T10:46:53Z",
+    "last_severity": "ALERT",
+    "last_matched": [
+      "2026",
+      "abertas"
+    ],
+    "consecutive_failures": 0
   },
   "GoogleNews_FundoAmbiental_VE": {
     "hash": "d56efdd96ec72d2094813a619ca7f66f2d608953eaf40cd0f25a2c7c2ddce701",
