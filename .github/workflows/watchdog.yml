@@ -67,16 +67,21 @@ jobs:
               last_age_min = (now - dt).total_seconds() / 60
               print(f"Last successful run: {last_ts} ({last_age_min:.1f} min ago)")
 
-          if last_age_min <= 30:
-              print("OK — monitor is fresh.")
+          # GitHub Actions delays cron schedules under load; */5 frequently
+          # stretches to 30-60 min between fires on free tier. We only alert
+          # if it's been >90 min — that's a real problem worth waking up for.
+          if last_age_min <= 90:
+              print(f"OK — monitor is fresh ({last_age_min:.1f} min).")
               sys.exit(0)
 
-          title = "⚠️ Monitor PAROU — incentivo EV"
+          title = "⚠️ Monitor com atraso — incentivo EV"
           body = (
               f"O workflow monitor.yml não corre com sucesso há "
-              f"{last_age_min:.0f} minutos.\n"
+              f"{last_age_min:.0f} minutos (limiar: 90 min).\n"
               f"Último run OK: {last_ts}\n\n"
-              f"Vai a https://github.com/{repo}/actions verificar o que se passa."
+              "Pode ser apenas atraso de scheduling do GitHub Actions, mas "
+              "vale a pena dar uma olhada em:\n"
+              f"https://github.com/{repo}/actions"
           )
 
           # ntfy
