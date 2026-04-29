@@ -3,15 +3,21 @@
 from __future__ import annotations
 
 import json
-import os
 import sys
 from pathlib import Path
 
-from .detectors import FetchResult, content_hash, fetch, find_new_keywords, now_iso
+from .detectors import FetchResult, content_hash, fetch, now_iso
 from .notifiers import notify_all
-from .sources import SOURCES, Source
+from .sources import (
+    CONTEXT_KEYWORDS,
+    DEFINITIVE_PHRASES,
+    SOURCES,
+    STRONG_KEYWORDS,
+    Source,
+)
 
 STATE_PATH = Path(__file__).resolve().parent.parent / "state.json"
+FAIL_THRESHOLD = 5
 
 
 def load_state() -> dict:
@@ -29,24 +35,53 @@ def save_state(state: dict) -> None:
     )
 
 
-def classify(source: Source, prev: dict, result: FetchResult) -> tuple[str, list[str]]:
-    """Return (severity, matched_keywords)."""
+def _new_phrases(prev_text: str, new_text: str, phrases: list[str]) -> list[str]:
+    prev_l = prev_text.lower()
+    new_l = new_text.lower()
+    return [p for p in phrases if p.lower() in new_l and p.lower() not in prev_l]
+
+
+def classify(
+    source: Source, prev: dict, result: FetchResult
+) -> tuple[str, list[str], str]:
+    """Return (severity, evidence, reason).
+
+    Severity levels:
+      - CRITICAL: very likely the actual aviso. Push with max priority.
+      - ALERT:    plausible signal worth reading. Push with default priority.
+      - INFO:     mere change. Email only, no push. (Skipped in notifier.)
+    """
     prev_text = prev.get("text", "")
 
-    # Caso especial: URL preventiva passou de 404/410/503 → conteúdo real.
-    # Isto é o sinal de ouro — uma página de aviso nova a aparecer.
+    # Sinal de ouro: URL preventiva passou de 404 a conteúdo real.
     was_missing = prev_text.startswith("HTTP_STATUS_")
     is_present = not result.text.startswith("HTTP_STATUS_")
-    if was_missing and is_present:
-        return "ALERT", ["URL_AGORA_EXISTE"]
+    if was_missing and is_present and source.tier == "OFFICIAL":
+        return "CRITICAL", ["URL_PASSOU_A_EXISTIR"], "URL preventiva oficial publicada"
 
-    new_kw = find_new_keywords(prev_text, result.text, source.alert_keywords)
-    if new_kw:
-        return "ALERT", new_kw
-    return "INFO", []
+    # Frases inequívocas (independente da fonte).
+    new_definitive = _new_phrases(prev_text, result.text, DEFINITIVE_PHRASES)
+    if new_definitive:
+        return "CRITICAL", new_definitive, "frase inequívoca de abertura"
 
+    # Combinação forte + contexto numa fonte oficial.
+    new_strong = _new_phrases(prev_text, result.text, STRONG_KEYWORDS)
+    new_context = _new_phrases(prev_text, result.text, CONTEXT_KEYWORDS)
 
-FAIL_THRESHOLD = 5  # consecutive failures before raising a self-alert
+    if source.tier == "OFFICIAL" and new_strong and new_context:
+        return (
+            "CRITICAL",
+            new_strong + new_context,
+            "fonte oficial com keyword forte + contexto",
+        )
+
+    if new_strong and new_context:
+        return "ALERT", new_strong + new_context, "keyword forte + contexto"
+
+    if new_strong or len(new_context) >= 2:
+        return "ALERT", new_strong + new_context, "sinais parciais"
+
+    return "INFO", new_context, "mudança sem sinal forte"
 
 
 def process_source(source: Source, state: dict) -> dict | None:
@@ -66,9 +101,8 @@ def process_source(source: Source, state: dict) -> dict | None:
                 f"consecutivos.\nÚltimo erro: {result.error}\n\n"
                 "Pode ser bloqueio, mudança de URL, ou indisponibilidade. "
                 "Verifica manualmente.",
-                "INFO",
+                "ALERT",
             )
-        # Persistir contagem mesmo em erro (não conta como mudança real).
         merged = dict(prev)
         merged["consecutive_failures"] = fails
         return merged
@@ -78,18 +112,32 @@ def process_source(source: Source, state: dict) -> dict | None:
         print(f"[{source.name}] no change")
         return None
 
-    severity, matched = classify(source, prev, result)
-    print(f"[{source.name}] CHANGED severity={severity} matched={matched}")
+    severity, evidence, reason = classify(source, prev, result)
+    print(
+        f"[{source.name}] CHANGED severity={severity} reason={reason} "
+        f"evidence={evidence[:5]}"
+    )
 
-    title_prefix = "🚨 INCENTIVO" if severity == "ALERT" else "ℹ️ Mudança"
-    title = f"{title_prefix} — {source.name}"
+    if severity == "CRITICAL":
+        title = f"🔴 AVISO INCENTIVO EV — {source.name}"
+        prefix = "⚡ AÇÃO POSSÍVEL"
+    elif severity == "ALERT":
+        title = f"🟡 Sinal possível — {source.name}"
+        prefix = "Provável notícia / mexida relacionada"
+    else:
+        title = f"ℹ️ Mudança — {source.name}"
+        prefix = "Mudança sem sinal forte"
+
     body_lines = [
-        f"Source: {source.name}",
-        f"URL:    {source.url}",
-        f"When:   {now_iso()}",
+        prefix,
+        "",
+        f"Razão:    {reason}",
+        f"Fonte:    {source.name} ({source.tier})",
+        f"URL:      {source.url}",
+        f"Quando:   {now_iso()}",
     ]
-    if matched:
-        body_lines.append(f"Keywords novas: {', '.join(matched)}")
+    if evidence:
+        body_lines.append(f"Sinais:   {', '.join(evidence[:8])}")
     body_lines.append("")
     body_lines.append("Excerto:")
     body_lines.append(result.summary[:1500])
@@ -103,7 +151,8 @@ def process_source(source: Source, state: dict) -> dict | None:
         "text": result.text,
         "last_changed": now_iso(),
         "last_severity": severity,
-        "last_matched": matched,
+        "last_evidence": evidence,
+        "last_reason": reason,
         "consecutive_failures": 0,
     }
 
@@ -126,7 +175,6 @@ def main() -> int:
         save_state(state)
         print("state saved")
     else:
-        # Touch nothing — keeps git diffs clean.
         print("no state changes")
 
     return 0

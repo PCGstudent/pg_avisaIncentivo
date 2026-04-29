@@ -18,35 +18,43 @@ def _env(name: str) -> str:
 def notify_all(title: str, body: str, severity: str) -> dict[str, str]:
     """Send notification through all configured channels.
 
+    Severity:
+      - CRITICAL: ntfy max priority + email + all channels.
+      - ALERT:    ntfy default priority + email + all channels.
+      - INFO:     email only (no push). Quiet by design.
+
     Returns a dict {channel: status} for logging.
     """
     results: dict[str, str] = {}
+    push_allowed = severity in ("CRITICAL", "ALERT")
 
-    # ntfy.sh — primary push channel.
+    # ntfy.sh — push only on ALERT/CRITICAL.
     topic = _env("NTFY_TOPIC")
-    if topic:
+    if topic and push_allowed:
         server = _env("NTFY_SERVER") or "https://ntfy.sh"
         results["ntfy"] = _safe(_send_ntfy, server, topic, title, body, severity)
+    elif not push_allowed:
+        results["ntfy"] = "skipped (INFO — push muted)"
     else:
         results["ntfy"] = "skipped (NTFY_TOPIC unset)"
 
-    # Email
+    # Email — always (quiet channel for full audit trail).
     if _env("EMAIL_USER") and _env("EMAIL_TO"):
         results["email"] = _safe(_send_email, title, body)
     else:
         results["email"] = "skipped (email not configured)"
 
-    # Telegram
-    if _env("TELEGRAM_BOT_TOKEN") and _env("TELEGRAM_CHAT_ID"):
+    # Telegram — only on ALERT/CRITICAL.
+    if _env("TELEGRAM_BOT_TOKEN") and _env("TELEGRAM_CHAT_ID") and push_allowed:
         results["telegram"] = _safe(_send_telegram, title, body)
     else:
-        results["telegram"] = "skipped (telegram not configured)"
+        results["telegram"] = "skipped"
 
-    # Discord
-    if _env("DISCORD_WEBHOOK_URL"):
+    # Discord — only on ALERT/CRITICAL.
+    if _env("DISCORD_WEBHOOK_URL") and push_allowed:
         results["discord"] = _safe(_send_discord, title, body, severity)
     else:
-        results["discord"] = "skipped (discord not configured)"
+        results["discord"] = "skipped"
 
     return results
 
@@ -60,8 +68,15 @@ def _safe(fn, *args, **kwargs) -> str:
 
 
 def _send_ntfy(server: str, topic: str, title: str, body: str, severity: str) -> None:
-    priority = "urgent" if severity == "ALERT" else "default"
-    tags = "rotating_light" if severity == "ALERT" else "information_source"
+    if severity == "CRITICAL":
+        priority = "max"
+        tags = "rotating_light,red_circle"
+    elif severity == "ALERT":
+        priority = "default"
+        tags = "yellow_circle"
+    else:
+        priority = "low"
+        tags = "information_source"
     requests.post(
         f"{server.rstrip('/')}/{topic}",
         data=body.encode("utf-8"),
