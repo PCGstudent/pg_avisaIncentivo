@@ -1,0 +1,30 @@
+name: keep-alive
+
+# GitHub disables scheduled workflows after 60 days of repo inactivity.
+# This job pushes a tiny heartbeat once a week so the schedule never expires.
+
+on:
+  schedule:
+    - cron: "0 9 * * 1" # every Monday at 09:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump heartbeat
+        run: |
+          mkdir -p .keepalive
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > .keepalive/last
+          if [ -n "$(git status --porcelain .keepalive/last)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add .keepalive/last
+            git commit -m "chore: keep-alive heartbeat"
+            git push
+          fi

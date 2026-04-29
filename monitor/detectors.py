@@ -54,6 +54,12 @@ def _fetch_html(source: Source) -> FetchResult:
         headers={"User-Agent": USER_AGENT, "Accept-Language": "pt-PT,pt;q=0.9"},
         timeout=TIMEOUT,
     )
+    # Tolerar 404 / 410 — usado para URLs preventivas (ainda não publicadas).
+    # O texto normalizado capta o status code, por isso quando passar a 200
+    # com conteúdo, o hash muda e o detector dispara ALERT.
+    if resp.status_code in (404, 410, 503):
+        text = f"HTTP_STATUS_{resp.status_code}"
+        return FetchResult(source=source.name, ok=True, text=text, summary=text)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "lxml")
 

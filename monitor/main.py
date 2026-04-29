@@ -31,12 +31,22 @@ def save_state(state: dict) -> None:
 
 def classify(source: Source, prev: dict, result: FetchResult) -> tuple[str, list[str]]:
     """Return (severity, matched_keywords)."""
-    new_kw = find_new_keywords(
-        prev.get("text", ""), result.text, source.alert_keywords
-    )
+    prev_text = prev.get("text", "")
+
+    # Caso especial: URL preventiva passou de 404/410/503 → conteúdo real.
+    # Isto é o sinal de ouro — uma página de aviso nova a aparecer.
+    was_missing = prev_text.startswith("HTTP_STATUS_")
+    is_present = not result.text.startswith("HTTP_STATUS_")
+    if was_missing and is_present:
+        return "ALERT", ["URL_AGORA_EXISTE"]
+
+    new_kw = find_new_keywords(prev_text, result.text, source.alert_keywords)
     if new_kw:
         return "ALERT", new_kw
     return "INFO", []
+
+
+FAIL_THRESHOLD = 5  # consecutive failures before raising a self-alert
 
 
 def process_source(source: Source, state: dict) -> dict | None:
@@ -44,8 +54,24 @@ def process_source(source: Source, state: dict) -> dict | None:
     result = fetch(source)
 
     if not result.ok:
-        print(f"[{source.name}] FETCH ERROR: {result.error}", file=sys.stderr)
-        return None
+        fails = int(prev.get("consecutive_failures", 0)) + 1
+        print(
+            f"[{source.name}] FETCH ERROR ({fails}x): {result.error}",
+            file=sys.stderr,
+        )
+        if fails == FAIL_THRESHOLD:
+            notify_all(
+                f"⚠️ Monitor: fonte com falhas — {source.name}",
+                f"A fonte {source.name} ({source.url}) falhou {fails} runs "
+                f"consecutivos.\nÚltimo erro: {result.error}\n\n"
+                "Pode ser bloqueio, mudança de URL, ou indisponibilidade. "
+                "Verifica manualmente.",
+                "INFO",
+            )
+        # Persistir contagem mesmo em erro (não conta como mudança real).
+        merged = dict(prev)
+        merged["consecutive_failures"] = fails
+        return merged
 
     new_hash = content_hash(result.text)
     if prev.get("hash") == new_hash:
@@ -78,6 +104,7 @@ def process_source(source: Source, state: dict) -> dict | None:
         "last_changed": now_iso(),
         "last_severity": severity,
         "last_matched": matched,
+        "consecutive_failures": 0,
     }
 
 

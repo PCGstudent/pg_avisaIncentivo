@@ -1,0 +1,118 @@
+name: watchdog
+
+# Hourly self-check: if the main monitor workflow hasn't run successfully
+# in the last 30 minutes, send an alert. This catches the case where GitHub
+# silently disables the cron, the runner is broken, or something else stops
+# the monitor without us noticing.
+
+on:
+  schedule:
+    - cron: "17 * * * *" # every hour at :17
+  workflow_dispatch: {}
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install requests
+        run: pip install requests
+
+      - name: Verify monitor freshness
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NTFY_SERVER: ${{ secrets.NTFY_SERVER }}
+          EMAIL_SMTP_HOST: ${{ secrets.EMAIL_SMTP_HOST }}
+          EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          python <<'PY'
+          import os, sys, datetime, requests, smtplib
+          from email.mime.text import MIMEText
+
+          repo = os.environ["REPO"]
+          token = os.environ["GH_TOKEN"]
+          api = f"https://api.github.com/repos/{repo}/actions/workflows/monitor.yml/runs"
+          r = requests.get(
+              api,
+              headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"},
+              params={"per_page": 5, "status": "success"},
+              timeout=20,
+          )
+          r.raise_for_status()
+          runs = r.json().get("workflow_runs", [])
+          if not runs:
+              print("No successful runs found at all — alerting.")
+              last_age_min = 9999
+              last_ts = "never"
+          else:
+              last = runs[0]
+              last_ts = last["updated_at"]
+              dt = datetime.datetime.fromisoformat(last_ts.replace("Z", "+00:00"))
+              now = datetime.datetime.now(datetime.timezone.utc)
+              last_age_min = (now - dt).total_seconds() / 60
+              print(f"Last successful run: {last_ts} ({last_age_min:.1f} min ago)")
+
+          if last_age_min <= 30:
+              print("OK — monitor is fresh.")
+              sys.exit(0)
+
+          title = "⚠️ Monitor PAROU — incentivo EV"
+          body = (
+              f"O workflow monitor.yml não corre com sucesso há "
+              f"{last_age_min:.0f} minutos.\n"
+              f"Último run OK: {last_ts}\n\n"
+              f"Vai a https://github.com/{repo}/actions verificar o que se passa."
+          )
+
+          # ntfy
+          topic = (os.environ.get("NTFY_TOPIC") or "").strip()
+          if topic:
+              server = (os.environ.get("NTFY_SERVER") or "https://ntfy.sh").strip()
+              try:
+                  requests.post(
+                      f"{server.rstrip('/')}/{topic}",
+                      data=body.encode("utf-8"),
+                      headers={"Title": title, "Priority": "urgent", "Tags": "warning"},
+                      timeout=15,
+                  ).raise_for_status()
+                  print("ntfy: sent")
+              except Exception as e:
+                  print(f"ntfy error: {e}")
+
+          # email
+          if os.environ.get("EMAIL_USER") and os.environ.get("EMAIL_TO"):
+              try:
+                  msg = MIMEText(body, "plain", "utf-8")
+                  msg["Subject"] = title
+                  msg["From"] = os.environ["EMAIL_USER"]
+                  msg["To"] = os.environ["EMAIL_TO"]
+                  with smtplib.SMTP(
+                      os.environ.get("EMAIL_SMTP_HOST", "smtp.gmail.com"),
+                      int(os.environ.get("EMAIL_SMTP_PORT", "587")),
+                      timeout=15,
+                  ) as s:
+                      s.starttls()
+                      s.login(os.environ["EMAIL_USER"], os.environ["EMAIL_PASSWORD"])
+                      s.send_message(msg)
+                  print("email: sent")
+              except Exception as e:
+                  print(f"email error: {e}")
+
+          # Failure exit so the watchdog itself shows red — extra signal.
+          sys.exit(1)
+          PY
