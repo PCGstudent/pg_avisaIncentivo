@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 from .detectors import FetchResult, content_hash, fetch, now_iso
+from .gemini_judge import Verdict, judge
 from .notifiers import notify_all
 from .sources import (
     CONTEXT_KEYWORDS,
@@ -118,6 +119,33 @@ def process_source(source: Source, state: dict) -> dict | None:
         f"evidence={evidence[:5]}"
     )
 
+    # AI second opinion: only on OFFICIAL sources where heuristics already
+    # raised a flag. Cheap (~few cents/month), always has safe fallback.
+    verdict: Verdict | None = None
+    if source.tier == "OFFICIAL" and severity in ("CRITICAL", "ALERT"):
+        verdict = judge(
+            prev_text=prev.get("text", ""),
+            curr_text=result.text,
+            source_name=source.name,
+            source_tier=source.tier,
+            source_url=source.url,
+        )
+        print(
+            f"[{source.name}] gemini available={verdict.available} "
+            f"is_real={verdict.is_real_aviso} conf={verdict.confidence:.2f} "
+            f"reason={verdict.reason!r}"
+        )
+        if verdict.available:
+            if verdict.is_real_aviso and verdict.confidence >= 0.7:
+                # AI confirms — keep/raise to CRITICAL with its reasoning.
+                severity = "CRITICAL"
+                reason = f"{reason} | Gemini: {verdict.reason}"
+            elif (not verdict.is_real_aviso) and verdict.confidence >= 0.6:
+                # AI rebuts — downgrade to INFO so the phone stays quiet.
+                severity = "INFO"
+                reason = f"rebaixado por Gemini: {verdict.reason}"
+            # else: AI unsure, keep heuristic decision unchanged.
+
     if severity == "CRITICAL":
         title = f"🔴 AVISO INCENTIVO EV — {source.name}"
         prefix = "⚡ AÇÃO POSSÍVEL"
@@ -138,6 +166,11 @@ def process_source(source: Source, state: dict) -> dict | None:
     ]
     if evidence:
         body_lines.append(f"Sinais:   {', '.join(evidence[:8])}")
+    if verdict and verdict.available:
+        body_lines.append(
+            f"Gemini:   is_real={verdict.is_real_aviso} "
+            f"(conf {verdict.confidence:.2f}) — {verdict.reason}"
+        )
     body_lines.append("")
     body_lines.append("Excerto:")
     body_lines.append(result.summary[:1500])
