@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import time
 from dataclasses import dataclass
 
 import requests
@@ -124,23 +125,37 @@ def judge(
         },
     }
 
-    try:
-        resp = requests.post(
-            GEMINI_ENDPOINT,
-            params={"key": api_key},
-            json=payload,
-            timeout=TIMEOUT,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-        text = data["candidates"][0]["content"]["parts"][0]["text"]
-        parsed = _extract_json(text)
-        if not parsed:
-            return Verdict(True, False, 0.0, "JSON parse failed", raw=text)
+    last_exc: Exception | None = None
+    for attempt in range(3):
+        try:
+            resp = requests.post(
+                GEMINI_ENDPOINT,
+                params={"key": api_key},
+                json=payload,
+                timeout=TIMEOUT,
+            )
+            # Retry on 429 (rate limit) and 5xx (transient).
+            if resp.status_code == 429 or 500 <= resp.status_code < 600:
+                time.sleep(5 * (attempt + 1))
+                continue
+            resp.raise_for_status()
+            data = resp.json()
+            text = data["candidates"][0]["content"]["parts"][0]["text"]
+            parsed = _extract_json(text)
+            if not parsed:
+                return Verdict(True, False, 0.0, "JSON parse failed", raw=text)
 
-        is_real = bool(parsed.get("is_real_aviso", False))
-        confidence = float(parsed.get("confidence", 0.0))
-        reason = str(parsed.get("reason", ""))[:300]
-        return Verdict(True, is_real, confidence, reason, raw=text)
-    except Exception as exc:  # noqa: BLE001 — outer guard, callers fall back
-        return Verdict(False, False, 0.0, f"call failed: {type(exc).__name__}: {exc}")
+            is_real = bool(parsed.get("is_real_aviso", False))
+            confidence = float(parsed.get("confidence", 0.0))
+            reason = str(parsed.get("reason", ""))[:300]
+            return Verdict(True, is_real, confidence, reason, raw=text)
+        except Exception as exc:  # noqa: BLE001
+            last_exc = exc
+            time.sleep(3 * (attempt + 1))
+
+    return Verdict(
+        False,
+        False,
+        0.0,
+        f"call failed after retries: {type(last_exc).__name__}: {last_exc}",
+    )
