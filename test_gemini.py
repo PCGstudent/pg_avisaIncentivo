@@ -4,7 +4,35 @@ Run this on GitHub Actions (where GEMINI_API_KEY is in env) via:
   python test_gemini.py
 """
 
+import json
+import os
+
+import requests
+
 from monitor.gemini_judge import judge
+
+
+def _diag_call() -> None:
+    key = (os.environ.get("GEMINI_API_KEY") or "").strip()
+    if not key:
+        print("DIAG: no GEMINI_API_KEY in env")
+        return
+    print(f"DIAG: key length={len(key)} prefix={key[:4]}*** suffix=***{key[-4:]}")
+    try:
+        r = requests.post(
+            "https://generativelanguage.googleapis.com/v1beta/models/"
+            "gemini-2.0-flash:generateContent",
+            params={"key": key},
+            json={"contents": [{"parts": [{"text": "Reply with just OK"}]}]},
+            timeout=20,
+        )
+        print(f"DIAG: HTTP {r.status_code}")
+        try:
+            print("DIAG body:", json.dumps(r.json(), indent=2)[:1500])
+        except Exception:
+            print("DIAG body (raw):", r.text[:1500])
+    except Exception as exc:  # noqa: BLE001
+        print(f"DIAG: exception {type(exc).__name__}: {exc}")
 
 
 CASE_A_PREV = (
@@ -45,6 +73,9 @@ def run(label: str, prev: str, curr: str) -> None:
 
 
 if __name__ == "__main__":
+    print("=== Direct API diagnostic ===")
+    _diag_call()
+    print()
     print("CASE A — should detect REAL aviso")
     run("REAL", CASE_A_PREV, CASE_A_CURR_REAL)
     print()
