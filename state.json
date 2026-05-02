@@ -92,7 +92,7 @@
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem sinal forte",
-    "consecutive_failures": 0
+    "consecutive_failures": 1
   },
   "GoogleNews_MobilidadeVerde": {
     "hash": "23bb0ba9b90478901a92c83f64a60948959455f07246b5ffc11b5f760566e560",
@@ -101,7 +101,7 @@
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem sinal forte",
-    "consecutive_failures": 0
+    "consecutive_failures": 1
   },
   "GoogleNews_IncentivoEletrico": {
     "hash": "06ecee5e891faa46a4be1b425cd7c1b2f7be3044b42328834db4c84380fbb056",
@@ -110,7 +110,7 @@
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem sinal forte",
-    "consecutive_failures": 0
+    "consecutive_failures": 1
   },
   "GoogleNews_AvisoFundoAmbiental": {
     "hash": "9ade44fe11e299dbf3b58e3b8bbfbbff3e4e9d1efad5a67f354cc2ccefc1a4e9",
@@ -119,7 +119,7 @@
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem sinal forte",
-    "consecutive_failures": 0
+    "consecutive_failures": 1
   },
   "GoogleNews_PAEPlus": {
     "hash": "5b0d561860bf969646020abe5782dd26301e73403b9227edb22fa86b6c6bbc2e",
@@ -128,7 +128,7 @@
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem sinal forte",
-    "consecutive_failures": 0
+    "consecutive_failures": 1
   },
   "GoogleNews_Subsidio2026": {
     "hash": "ed8c02938bbccb849b337dc1707d993117ceba3cddc697162cb3c4298aefd9b0",
@@ -137,6 +137,6 @@
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem sinal forte",
-    "consecutive_failures": 0
+    "consecutive_failures": 1
   }
 }
