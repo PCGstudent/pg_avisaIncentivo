@@ -54,8 +54,10 @@ def classify(
     """
     prev_text = prev.get("text", "")
 
-    # Sinal de ouro: URL preventiva passou de 404 a conteúdo real.
-    was_missing = prev_text.startswith("HTTP_STATUS_")
+    # Sinal de ouro: URL preventiva passou de 404/410 (não existia) a conteúdo
+    # real. Excluímos 503 porque é erro transitório do servidor — passar de
+    # 503 a conteúdo é apenas o servidor a recuperar, não publicação nova.
+    was_missing = prev_text in ("HTTP_STATUS_404", "HTTP_STATUS_410")
     is_present = not result.text.startswith("HTTP_STATUS_")
     if was_missing and is_present and source.tier == "OFFICIAL":
         return "CRITICAL", ["URL_PASSOU_A_EXISTIR"], "URL preventiva oficial publicada"
@@ -112,6 +114,24 @@ def process_source(source: Source, state: dict) -> dict | None:
     if prev.get("hash") == new_hash:
         print(f"[{source.name}] no change")
         return None
+
+    # Página acabou de cair em erro (404/410/503/error page). Atualizamos o
+    # estado em silêncio — não notificamos perda de conteúdo. O sinal
+    # interessante é o oposto: erro -> conteúdo (tratado em classify).
+    became_error = result.text.startswith("HTTP_STATUS_") and not prev.get(
+        "text", ""
+    ).startswith("HTTP_STATUS_")
+    if became_error:
+        print(f"[{source.name}] became error page ({result.text}) — silent update")
+        return {
+            "hash": new_hash,
+            "text": result.text,
+            "last_changed": now_iso(),
+            "last_severity": "INFO",
+            "last_evidence": [],
+            "last_reason": "página passou a estado de erro (silenciado)",
+            "consecutive_failures": 0,
+        }
 
     severity, evidence, reason = classify(source, prev, result)
     print(

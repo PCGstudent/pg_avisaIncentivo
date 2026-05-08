@@ -28,7 +28,32 @@ class FetchResult:
     error: str | None = None
 
 
+_DATE_PATTERN = re.compile(r"\b\d{1,2}/\d{1,2}/\d{4}\b")
+_NOISE_PHRASES = (
+    # Linhas de pagamentos quinzenais publicadas todos os meses pelo FA;
+    # mudam constantemente de valor e data sem qualquer ligação ao aviso EV.
+    # Apanha do início do título até à elipse "..." que termina o snippet.
+    # `Ag.ncia` tolera Agência/Agencia (com ou sem acento, encoding glitches).
+    re.compile(
+        r"Pagamentos da Ag.ncia para o Clima.*?\.\.\.",
+        re.IGNORECASE | re.DOTALL,
+    ),
+    re.compile(
+        r"Pagamentos do Fundo Ambiental.*?\.\.\.",
+        re.IGNORECASE | re.DOTALL,
+    ),
+)
+
+
 def _normalise(text: str) -> str:
+    # Remove blocos de pagamentos antes de colapsar espaços — são puro ruído
+    # que mexe a cada poll e não tem informação sobre a abertura do aviso.
+    for pat in _NOISE_PHRASES:
+        text = pat.sub(" ", text)
+    # Datas DD/MM/YYYY são datas de notícias; mudam todos os dias e não
+    # adicionam sinal. Mantemos anos isolados (ex: "2026") porque são
+    # keywords de contexto.
+    text = _DATE_PATTERN.sub(" ", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text
 
@@ -46,6 +71,18 @@ def fetch(source: Source) -> FetchResult:
             summary="",
             error=f"{type(exc).__name__}: {exc}",
         )
+
+
+ERROR_PAGE_MARKERS = (
+    "ocorreu um erro inesperado",
+    "the resource cannot be found",
+    "service unavailable",
+)
+
+
+def _is_error_page(text: str) -> bool:
+    lower = text.lower()
+    return any(marker in lower for marker in ERROR_PAGE_MARKERS)
 
 
 def _fetch_html(source: Source) -> FetchResult:
@@ -72,6 +109,14 @@ def _fetch_html(source: Source) -> FetchResult:
         region = soup
 
     text = _normalise(region.get_text(" ", strip=True))
+
+    # Páginas oficiais do FA oscilam para "Ocorreu um erro inesperado".
+    # Colapsamos para um marcador estável para o hash não andar a mexer
+    # entre variantes de erro. Tratado como equivalente a 503.
+    if _is_error_page(text):
+        text = "HTTP_STATUS_503"
+        return FetchResult(source=source.name, ok=True, text=text, summary=text)
+
     summary = text[:300]
     return FetchResult(source=source.name, ok=True, text=text, summary=summary)
 
@@ -81,14 +126,21 @@ def _fetch_rss(source: Source) -> FetchResult:
     if parsed.bozo and not parsed.entries:
         raise RuntimeError(f"RSS parse failed: {parsed.bozo_exception}")
 
-    items = []
+    # `text` é usado para hash + keyword scan. Tem de ser estável: só títulos
+    # normalizados, ordenados, sem datas nem links (Google News mete tokens
+    # voláteis nos URLs e reordena, o que disparava notificações INFO sem
+    # mudança real de conteúdo).
+    titles: list[str] = []
+    items: list[str] = []  # versão rica para mostrar na notificação
     for entry in parsed.entries[:15]:
-        title = entry.get("title", "")
+        title = (entry.get("title") or "").strip()
         link = entry.get("link", "")
         published = entry.get("published", "") or entry.get("updated", "")
+        if title:
+            titles.append(_normalise(title.lower()))
         items.append(f"{published} | {title} | {link}")
 
-    text = _normalise("\n".join(items))
+    text = _normalise(" || ".join(sorted(set(titles))))
     summary = "\n".join(items[:3])
     return FetchResult(source=source.name, ok=True, text=text, summary=summary)
 

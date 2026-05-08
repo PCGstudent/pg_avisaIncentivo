@@ -21,7 +21,8 @@ def notify_all(title: str, body: str, severity: str) -> dict[str, str]:
     Severity:
       - CRITICAL: ntfy max priority + email + all channels.
       - ALERT:    ntfy default priority + email + all channels.
-      - INFO:     email only (no push). Quiet by design.
+      - INFO:     no notifications. Logged in GitHub Actions output and
+                  in state.json (committed) — full audit trail without spam.
 
     Returns a dict {channel: status} for logging.
     """
@@ -38,9 +39,12 @@ def notify_all(title: str, body: str, severity: str) -> dict[str, str]:
     else:
         results["ntfy"] = "skipped (NTFY_TOPIC unset)"
 
-    # Email — always (quiet channel for full audit trail).
-    if _env("EMAIL_USER") and _env("EMAIL_TO"):
+    # Email — only on ALERT/CRITICAL. INFO ficaria a inundar a inbox e o
+    # efeito é o oposto do desejado (deixamos de abrir os emails reais).
+    if _env("EMAIL_USER") and _env("EMAIL_TO") and push_allowed:
         results["email"] = _safe(_send_email, title, body)
+    elif not push_allowed:
+        results["email"] = "skipped (INFO — email muted)"
     else:
         results["email"] = "skipped (email not configured)"
 
