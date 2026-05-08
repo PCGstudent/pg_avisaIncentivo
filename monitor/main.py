@@ -139,10 +139,18 @@ def process_source(source: Source, state: dict) -> dict | None:
         f"evidence={evidence[:5]}"
     )
 
-    # AI second opinion: only on OFFICIAL sources where heuristics already
-    # raised a flag. Cheap (~few cents/month), always has safe fallback.
+    # AI second opinion. Aplica-se em dois casos:
+    # 1. Fontes OFFICIAL com ALERT/CRITICAL — validação habitual.
+    # 2. Fontes NEWS com CRITICAL — porque RSS do Google News é propenso a
+    #    falsos positivos (ex: "Aviso n.º 5656/2024/2" totalmente não-EV
+    #    apareceu no feed e disparou CRITICAL pela frase "aviso n.º").
+    #    Notícias relevantes verdadeiras serão validadas pelo Gemini com
+    #    confidence alta; ruído é rebaixado para INFO antes de notificar.
     verdict: Verdict | None = None
-    if source.tier == "OFFICIAL" and severity in ("CRITICAL", "ALERT"):
+    needs_judge = (
+        source.tier == "OFFICIAL" and severity in ("CRITICAL", "ALERT")
+    ) or (source.tier == "NEWS" and severity == "CRITICAL")
+    if needs_judge:
         verdict = judge(
             prev_text=prev.get("text", ""),
             curr_text=result.text,

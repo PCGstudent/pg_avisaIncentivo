@@ -140,12 +140,14 @@ SOURCES: list[Source] = [
         tier="OFFICIAL",
         selector="main",
     ),
-    # --- Google News com filtro "Diário da República": quando o aviso é
-    # publicado em DR, é imediatamente noticiado. Apanha o sinal DRE
-    # indiretamente sem ter de fazer scrape JS-rendered ao DRE.
+    # --- Google News com query apertada: "Mobilidade Verde" + 2026.
+    # A query original (genérica) trazia avisos DRE não relacionados que
+    # apenas mencionavam Fundo Ambiental — disparou um falso CRITICAL no
+    # primeiro run (Aviso n.º 5656/2024/2 não-EV). Com "Mobilidade Verde"
+    # forçado entre aspas a fonte fica focada no programa que nos importa.
     Source(
-        name="GoogleNews_DRE_Aviso",
-        url="https://news.google.com/rss/search?q=%22Di%C3%A1rio+da+Rep%C3%BAblica%22+%22Fundo+Ambiental%22+aviso+el%C3%A9tricos&hl=pt-PT&gl=PT&ceid=PT:pt-150",
+        name="GoogleNews_DRE_MobilidadeVerde",
+        url="https://news.google.com/rss/search?q=%22Mobilidade+Verde%22+(aviso+OR+%22Di%C3%A1rio+da+Rep%C3%BAblica%22)+2026&hl=pt-PT&gl=PT&ceid=PT:pt-150",
         kind="rss",
         tier="NEWS",
     ),
