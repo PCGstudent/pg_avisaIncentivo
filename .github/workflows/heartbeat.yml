@@ -1,0 +1,148 @@
+name: heartbeat
+
+# Email semanal de prova-de-vida. Resumo curto: nº runs OK, fontes ativas,
+# fontes em falha, e estado mais recente. Permite confiar no silêncio:
+# se a inbox está calma e o heartbeat chega, está tudo bem.
+
+on:
+  schedule:
+    - cron: "0 9 * * 1" # segunda-feira às 09:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install requests
+        run: pip install requests
+
+      - name: Send heartbeat email
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          EMAIL_SMTP_HOST: ${{ secrets.EMAIL_SMTP_HOST }}
+          EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          python <<'PY'
+          import json
+          import os
+          import smtplib
+          from datetime import datetime, timedelta, timezone
+          from email.mime.text import MIMEText
+          from pathlib import Path
+
+          import requests
+
+          repo = os.environ["REPO"]
+          token = os.environ["GH_TOKEN"]
+          api = f"https://api.github.com/repos/{repo}/actions/workflows/monitor.yml/runs"
+          since = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
+          r = requests.get(
+              api,
+              headers={
+                  "Authorization": f"Bearer {token}",
+                  "Accept": "application/vnd.github+json",
+              },
+              params={"per_page": 100, "created": f">={since}"},
+              timeout=20,
+          )
+          r.raise_for_status()
+          runs = r.json().get("workflow_runs", [])
+          ok = sum(1 for x in runs if x["conclusion"] == "success")
+          fail = sum(1 for x in runs if x["conclusion"] == "failure")
+
+          state_path = Path("state.json")
+          fontes_total = 0
+          fontes_em_falha = []
+          ultimo_alerta = None
+          ultimo_critical = None
+          if state_path.exists():
+              try:
+                  state = json.loads(state_path.read_text(encoding="utf-8"))
+                  fontes_total = len(state)
+                  for name, data in state.items():
+                      fails = int(data.get("consecutive_failures", 0))
+                      if fails >= 3:
+                          fontes_em_falha.append(f"{name} ({fails}x)")
+                      sev = data.get("last_severity")
+                      ts = data.get("last_changed", "")
+                      if sev == "ALERT" and (
+                          ultimo_alerta is None or ts > ultimo_alerta[1]
+                      ):
+                          ultimo_alerta = (name, ts)
+                      if sev == "CRITICAL" and (
+                          ultimo_critical is None or ts > ultimo_critical[1]
+                      ):
+                          ultimo_critical = (name, ts)
+              except Exception as exc:  # noqa: BLE001
+                  print(f"state read error: {exc}")
+
+          health = "OK" if fail == 0 and not fontes_em_falha else "ATENÇÃO"
+
+          lines = [
+              f"Heartbeat semanal — monitor incentivo EV ({health})",
+              "",
+              f"Runs últimos 7 dias:  {ok} OK / {fail} falhas (de {len(runs)} total)",
+              f"Fontes monitorizadas: {fontes_total}",
+          ]
+          if fontes_em_falha:
+              lines.append("")
+              lines.append("Fontes em falha persistente (>=3 fails):")
+              for f in fontes_em_falha:
+                  lines.append(f"  - {f}")
+          else:
+              lines.append("Fontes em falha:      nenhuma")
+
+          lines.append("")
+          if ultimo_critical:
+              lines.append(f"Último CRITICAL: {ultimo_critical[0]} @ {ultimo_critical[1]}")
+          else:
+              lines.append("Último CRITICAL: nunca (esperado até abertura do aviso)")
+          if ultimo_alerta:
+              lines.append(f"Último ALERT:    {ultimo_alerta[0]} @ {ultimo_alerta[1]}")
+
+          lines.append("")
+          lines.append(f"Repo: https://github.com/{repo}")
+          lines.append(f"Actions: https://github.com/{repo}/actions")
+          lines.append("")
+          lines.append(
+              "Se este email parar de chegar uma segunda-feira, é sinal de "
+              "que algo falhou em silêncio — vale a pena verificar."
+          )
+
+          body = "\n".join(lines)
+          subject = f"💚 Heartbeat — {health} — {ok} runs OK / {fail} falhas"
+
+          if not (os.environ.get("EMAIL_USER") and os.environ.get("EMAIL_TO")):
+              print("No email configured — skipping send")
+              print(body)
+              raise SystemExit(0)
+
+          msg = MIMEText(body, "plain", "utf-8")
+          msg["Subject"] = subject
+          msg["From"] = os.environ["EMAIL_USER"]
+          msg["To"] = os.environ["EMAIL_TO"]
+          with smtplib.SMTP(
+              os.environ.get("EMAIL_SMTP_HOST", "smtp.gmail.com"),
+              int(os.environ.get("EMAIL_SMTP_PORT", "587")),
+              timeout=15,
+          ) as s:
+              s.starttls()
+              s.login(os.environ["EMAIL_USER"], os.environ["EMAIL_PASSWORD"])
+              s.send_message(msg)
+          print("heartbeat: sent")
+          PY

@@ -88,7 +88,11 @@ def _is_error_page(text: str) -> bool:
 def _fetch_html(source: Source) -> FetchResult:
     resp = requests.get(
         source.url,
-        headers={"User-Agent": USER_AGENT, "Accept-Language": "pt-PT,pt;q=0.9"},
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "pt-PT,pt;q=0.9",
+        },
         timeout=TIMEOUT,
     )
     # Tolerar 404 / 410 — usado para URLs preventivas (ainda não publicadas).

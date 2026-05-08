@@ -21,15 +21,27 @@ DEFINITIVE_PHRASES = [
     "candidaturas abertas",
     "candidaturas abriram",
     "candidaturas estão abertas",
+    "candidaturas estao abertas",
     "aviso publicado",
     "aviso aberto",
     "aviso n.º",
     "aviso nº",
+    "aviso n.o",
     "abertura de candidaturas",
+    "abertura do aviso",
     "abriu o aviso",
+    "abriram as candidaturas",
     "novo aviso",
     "formulário de candidatura",
+    "formulario de candidatura",
     "submeter candidatura",
+    "submissão de candidaturas",
+    "submissao de candidaturas",
+    "início das candidaturas",
+    "inicio das candidaturas",
+    "regulamento publicado",
+    "incentivo aberto",
+    "candidaturas a partir de",
 ]
 
 STRONG_KEYWORDS = [
@@ -117,6 +129,25 @@ SOURCES: list[Source] = [
         kind="html",
         tier="OFFICIAL",
         selector="main",
+    ),
+    # --- e-Portugal: portal único de serviços públicos.
+    # Mesmo a página de "0 resultados" muda quando aparecer 1 resultado novo,
+    # disparando ALERT.
+    Source(
+        name="ePortugal_IncentivoEV",
+        url="https://eportugal.gov.pt/pesquisa?search=incentivo+veiculos+eletricos",
+        kind="html",
+        tier="OFFICIAL",
+        selector="main",
+    ),
+    # --- Google News com filtro "Diário da República": quando o aviso é
+    # publicado em DR, é imediatamente noticiado. Apanha o sinal DRE
+    # indiretamente sem ter de fazer scrape JS-rendered ao DRE.
+    Source(
+        name="GoogleNews_DRE_Aviso",
+        url="https://news.google.com/rss/search?q=%22Di%C3%A1rio+da+Rep%C3%BAblica%22+%22Fundo+Ambiental%22+aviso+el%C3%A9tricos&hl=pt-PT&gl=PT&ceid=PT:pt-150",
+        kind="rss",
+        tier="NEWS",
     ),
     # --- ACAP ---
     Source(
