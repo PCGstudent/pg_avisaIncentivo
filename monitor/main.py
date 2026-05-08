@@ -20,6 +20,11 @@ from .sources import (
 STATE_PATH = Path(__file__).resolve().parent.parent / "state.json"
 FAIL_THRESHOLD = 5
 
+# Limite de items "vistos" guardados por fonte. Garbage collect — depois
+# disto descartam-se os mais antigos. 200 acomoda mais de uma semana de
+# notícias mesmo num feed activo, sem o state.json crescer sem fim.
+SEEN_ITEMS_LIMIT = 200
+
 
 def load_state() -> dict:
     if STATE_PATH.exists():
@@ -36,10 +41,16 @@ def save_state(state: dict) -> None:
     )
 
 
-def _new_phrases(prev_text: str, new_text: str, phrases: list[str]) -> list[str]:
-    prev_l = prev_text.lower()
-    new_l = new_text.lower()
-    return [p for p in phrases if p.lower() in new_l and p.lower() not in prev_l]
+def _scan_keywords(text: str, keywords: list[str]) -> list[str]:
+    """Return keywords that appear in `text` (case-insensitive)."""
+    lower = text.lower()
+    return [kw for kw in keywords if kw.lower() in lower]
+
+
+def _new_items(seen: list[str], current: list[str]) -> list[str]:
+    """Items present in `current` but not in `seen`."""
+    seen_set = set(seen)
+    return [item for item in current if item not in seen_set]
 
 
 def classify(
@@ -47,44 +58,78 @@ def classify(
 ) -> tuple[str, list[str], str]:
     """Return (severity, evidence, reason).
 
+    Decisão baseada em ITEMS NOVOS (títulos RSS / parágrafos HTML), não em
+    keywords novas no texto agregado. Razão: o objectivo é apanhar uma
+    notícia/alteração genuinamente nova, não keywords novas no texto. Uma
+    notícia velha a saltar para o topo do feed não é novidade; uma notícia
+    nova com keywords que já apareciam noutras notícias antigas É novidade.
+
     Severity levels:
       - CRITICAL: very likely the actual aviso. Push with max priority.
       - ALERT:    plausible signal worth reading. Push with default priority.
-      - INFO:     mere change. Email only, no push. (Skipped in notifier.)
+      - INFO:     mere change. No push, no email.
     """
     prev_text = prev.get("text", "")
 
     # Sinal de ouro: URL preventiva passou de 404/410 (não existia) a conteúdo
-    # real. Excluímos 503 porque é erro transitório do servidor — passar de
-    # 503 a conteúdo é apenas o servidor a recuperar, não publicação nova.
+    # real. Excluímos 503 porque é erro transitório do servidor.
     was_missing = prev_text in ("HTTP_STATUS_404", "HTTP_STATUS_410")
     is_present = not result.text.startswith("HTTP_STATUS_")
     if was_missing and is_present and source.tier == "OFFICIAL":
         return "CRITICAL", ["URL_PASSOU_A_EXISTIR"], "URL preventiva oficial publicada"
 
-    # Frases inequívocas (independente da fonte).
-    new_definitive = _new_phrases(prev_text, result.text, DEFINITIVE_PHRASES)
-    if new_definitive:
-        return "CRITICAL", new_definitive, "frase inequívoca de abertura"
+    # Items genuinamente novos vs tudo o que já vimos antes nesta fonte.
+    seen_items: list[str] = prev.get("seen_items", [])
+    new_items = _new_items(seen_items, result.items)
 
-    # Combinação forte + contexto numa fonte oficial.
-    new_strong = _new_phrases(prev_text, result.text, STRONG_KEYWORDS)
-    new_context = _new_phrases(prev_text, result.text, CONTEXT_KEYWORDS)
+    if not new_items:
+        # Hash mudou (chegámos aqui), mas nenhum item de bloco novo —
+        # foi reordenação, mudança cosmética, ou pequeno ajuste em texto
+        # que não constituiu parágrafo novo. Nada a alertar.
+        return "INFO", [], "mudança sem item novo (reordenação/cosmético)"
+
+    # Análise de sinal feita SÓ sobre os items novos — assim keywords que já
+    # existiam noutros items antigos não disparam falsos alertas, e
+    # keywords só num item novo apanham sempre o sinal.
+    delta_text = " || ".join(new_items)
+
+    new_definitive = _scan_keywords(delta_text, DEFINITIVE_PHRASES)
+    if new_definitive:
+        return (
+            "CRITICAL",
+            new_definitive + [f"({len(new_items)} items novos)"],
+            "frase inequívoca de abertura em item novo",
+        )
+
+    new_strong = _scan_keywords(delta_text, STRONG_KEYWORDS)
+    new_context = _scan_keywords(delta_text, CONTEXT_KEYWORDS)
 
     if source.tier == "OFFICIAL" and new_strong and new_context:
         return (
             "CRITICAL",
-            new_strong + new_context,
-            "fonte oficial com keyword forte + contexto",
+            new_strong + new_context + [f"({len(new_items)} items novos)"],
+            "fonte oficial com keyword forte + contexto em item novo",
         )
 
     if new_strong and new_context:
-        return "ALERT", new_strong + new_context, "keyword forte + contexto"
+        return (
+            "ALERT",
+            new_strong + new_context + [f"({len(new_items)} items novos)"],
+            "keyword forte + contexto em item novo",
+        )
 
     if new_strong or len(new_context) >= 2:
-        return "ALERT", new_strong + new_context, "sinais parciais"
+        return (
+            "ALERT",
+            new_strong + new_context + [f"({len(new_items)} items novos)"],
+            "sinais parciais em item novo",
+        )
 
-    return "INFO", new_context, "mudança sem sinal forte"
+    return (
+        "INFO",
+        new_context + [f"({len(new_items)} items novos)"],
+        "item novo mas sem sinal forte",
+    )
 
 
 def process_source(source: Source, state: dict) -> dict | None:
@@ -130,6 +175,23 @@ def process_source(source: Source, state: dict) -> dict | None:
             "last_severity": "INFO",
             "last_evidence": [],
             "last_reason": "página passou a estado de erro (silenciado)",
+            "consecutive_failures": 0,
+        }
+
+    # Bootstrap: ou primeira vez que vemos esta fonte, ou migração (state
+    # antigo sem `seen_items`). Em qualquer caso, todos os items pareceriam
+    # "novos" mas não há sinal — registamos em silêncio para detecção futura.
+    is_bootstrap = "seen_items" not in prev
+    if is_bootstrap:
+        print(f"[{source.name}] BOOTSTRAP — {len(result.items)} items registados em silêncio")
+        return {
+            "hash": new_hash,
+            "text": result.text,
+            "seen_items": result.items[:SEEN_ITEMS_LIMIT],
+            "last_changed": now_iso(),
+            "last_severity": "INFO",
+            "last_evidence": [],
+            "last_reason": "bootstrap (estado inicial registado)",
             "consecutive_failures": 0,
         }
 
@@ -184,6 +246,10 @@ def process_source(source: Source, state: dict) -> dict | None:
         title = f"ℹ️ Mudança — {source.name}"
         prefix = "Mudança sem sinal forte"
 
+    # Items genuinamente novos para mostrar no email — é o que interessa.
+    seen_items_prev: list[str] = prev.get("seen_items", [])
+    new_items_for_body = _new_items(seen_items_prev, result.items)
+
     body_lines = [
         prefix,
         "",
@@ -199,6 +265,11 @@ def process_source(source: Source, state: dict) -> dict | None:
             f"Gemini:   is_real={verdict.is_real_aviso} "
             f"(conf {verdict.confidence:.2f}) — {verdict.reason}"
         )
+    if new_items_for_body:
+        body_lines.append("")
+        body_lines.append(f"Items novos ({len(new_items_for_body)}):")
+        for item in new_items_for_body[:10]:
+            body_lines.append(f"  • {item[:200]}")
     body_lines.append("")
     body_lines.append("Excerto:")
     body_lines.append(result.summary[:1500])
@@ -207,9 +278,19 @@ def process_source(source: Source, state: dict) -> dict | None:
     delivery = notify_all(title, body, severity)
     print(f"[{source.name}] notify -> {delivery}")
 
+    # Atualizar set de items vistos: items prévios + items deste fetch.
+    # Trim aos mais recentes (current items + tail dos antigos) — assim
+    # os items que ainda aparecem no fetch ficam, e os outros expiram.
+    merged_seen = list(result.items)
+    for item in seen_items_prev:
+        if item not in merged_seen:
+            merged_seen.append(item)
+    merged_seen = merged_seen[:SEEN_ITEMS_LIMIT]
+
     return {
         "hash": new_hash,
         "text": result.text,
+        "seen_items": merged_seen,
         "last_changed": now_iso(),
         "last_severity": severity,
         "last_evidence": evidence,

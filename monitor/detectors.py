@@ -32,7 +32,17 @@ class FetchResult:
     ok: bool
     text: str  # normalised text used for hashing/keyword scan
     summary: str  # short human-readable summary for notifications
+    # Lista de unidades atómicas para detecção de "novidade":
+    # - RSS: títulos de notícia (string normalizada por título)
+    # - HTML: parágrafos / linhas relevantes do conteúdo principal
+    # O detector compara este conjunto contra o conjunto guardado
+    # do fetch anterior para identificar items genuinamente novos.
+    items: list[str] = None  # type: ignore[assignment]
     error: str | None = None
+
+    def __post_init__(self) -> None:
+        if self.items is None:
+            self.items = []
 
 
 _DATE_PATTERN = re.compile(r"\b\d{1,2}/\d{1,2}/\d{4}\b")
@@ -128,8 +138,30 @@ def _fetch_html(source: Source) -> FetchResult:
         text = "HTTP_STATUS_503"
         return FetchResult(source=source.name, ok=True, text=text, summary=text)
 
+    # Lista de "blocos" — parágrafos, items de lista, headings — para detecção
+    # de novidade. Filtra blocos curtos (<30 chars) que são tipicamente
+    # entradas de menu/navegação sem informação útil.
+    blocks: list[str] = []
+    for el in region.find_all(["p", "li", "h1", "h2", "h3", "h4", "td"]):
+        snippet = _normalise(el.get_text(" ", strip=True))
+        if len(snippet) >= 30:
+            blocks.append(snippet.lower())
+    # Dedup preservando ordem.
+    seen = set()
+    unique_blocks: list[str] = []
+    for b in blocks:
+        if b not in seen:
+            seen.add(b)
+            unique_blocks.append(b)
+
     summary = text[:300]
-    return FetchResult(source=source.name, ok=True, text=text, summary=summary)
+    return FetchResult(
+        source=source.name,
+        ok=True,
+        text=text,
+        summary=summary,
+        items=unique_blocks,
+    )
 
 
 def _entry_age_days(entry: dict) -> float | None:
@@ -182,7 +214,15 @@ def _fetch_rss(source: Source) -> FetchResult:
 
     text = _normalise(" || ".join(sorted(set(recent_titles))))
     summary = "\n".join(recent_items[:3]) if recent_items else "(sem entradas recentes)"
-    return FetchResult(source=source.name, ok=True, text=text, summary=summary)
+    # `items` = títulos normalizados, sem duplicados. Cada um é uma unidade
+    # atómica de "novidade" no feed.
+    return FetchResult(
+        source=source.name,
+        ok=True,
+        text=text,
+        summary=summary,
+        items=sorted(set(recent_titles)),
+    )
 
 
 def content_hash(text: str) -> str:
