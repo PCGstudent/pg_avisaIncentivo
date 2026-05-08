@@ -70,8 +70,8 @@
     "consecutive_failures": 0
   },
   "ACAP_Noticias": {
-    "hash": "f3895314196a68aa6c13cfe9b5b30c533877703bb7d04c75d896efc8dcd6a467",
-    "text": "Um momento, por favorâ¦ Aguarde enquanto sua solicitaÃ§Ã£o estÃ¡ sendo verificadaâ¦",
+    "hash": "0b27dc0ec2005471916c60433ff1dfd919ce99263c9187a92a059a1361b04d03",
+    "text": "ACAP | Home ACAP Sectores Estatísticas Comunicação Serviços menu ACAP Sectores Estatísticas Comunicação Serviços Adesão Contactos My ACAP Pesquisa PT | EN Fórum DPAI/ACAP - Para quem move o aftermarket Inscrições abertas: 29 de Maio | Auditório da Exponor. Saiba Mais Mercado Automóvel em Portugal Abril 2026 Saiba Mais PRODUÇÃO AUTOMÓVEL EM PORTUGAL Março 2026 Saiba Mais Já verificou se o seu veículo tem recall? A ACAP, em parceria com o IMT e com o apoio da Direção-Geral do Consumidor (DGC), disponibiliza uma plataforma online que permite aos condutores verificar se um veículo está abrangido por alguma acção de recall Saiba Mais SCROLL Adesão Contactos My ACAP Pesquisa Redes Sociais Notícias Secretário-Geral integra painel da Talk BMW no Portugal Smart Cities Summit ACAP comenta mercado automóvel no 1º Quadrimestre na SIC, RTP e TVI Valorpneu lança nova campanha institucional Sob o mote “A Arte de Transformar Pneus Usados em Futuro”, abrange televisão, rádio, meios dig(...) O sector Automóvel em números 0 Empresas 0 mM Facturação / ano 0 % Receitas fiscais do estado 0 Trabalhadores Universo ACAP Ver Website Ver Website Ver Website Ver Website Ver Website Filiações Internacionais Ver Website Ver Website Ver Website Ver Website Fique a par das nossas novidades Aceito receber newsletters Li e aceito a política de privacidade Lisboa Morada Av.Torre de Belém, 29 1400-342 Lisboa Telefone +351 213 035 300* E-mail mail@acap.pt GPS 38º42'05\" N 9º12'50.4 W *(Custo de chamada para rede fixa nacional) Porto Morada Rua de Stª Catarina, 693, 4º 4000-454 Porto Telefone +351 222 005 606* E-mail porto@acap.pt GPS 41º09'08.4\"N 8º36'13.5\"W *(Custo de chamada para rede fixa nacional) Acompanhe a ACAP nas redes sociais Website ACAP com o apoio © 2026 design by ativait | development by designbinário . Todos os direitos reservados. Política de privacidade . Consulte aqui a Política de Concorrência ACAP.",
     "seen_items": [
       "fórum dpai/acap - para quem move o aftermarket inscrições abertas: 29 de maio | auditório da exponor. saiba mais",
       "mercado automóvel em portugal abril 2026 saiba mais",
@@ -80,7 +80,7 @@
       "fique a par das nossas novidades",
       "© 2026 design by ativait | development by designbinário . todos os direitos reservados. política de privacidade ."
     ],
-    "last_changed": "2026-05-08T17:13:56Z",
+    "last_changed": "2026-05-08T18:45:50Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -180,6 +180,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-08T17:13:59Z"
+    "last_run": "2026-05-08T18:45:53Z"
   }
 }
