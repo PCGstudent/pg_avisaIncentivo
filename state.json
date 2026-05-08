@@ -154,5 +154,24 @@
     ],
     "last_reason": "frase inequívoca de abertura",
     "consecutive_failures": 0
+  },
+  "GoogleNews_DRE_MobilidadeVerde": {
+    "hash": "d23bb7a30b2d5ed52f7884a632edbe801de700243fb996b74a5ecd5977d6cdaa",
+    "text": "aberto novo apoio à compra de veículos elétricos - portal ambiente online || apoios para comprar veículos elétricos voltam a 29 de dezembro com 17,6 milhões de euros - doutor finanças || comprou um veículo elétrico em 2025? nova fase de candidaturas ao apoio arrancam hoje - pplware || fundo ambiental autorizado a reforçar apoios à mobilidade verde no transporte urbano - portal ambiente online || governo abre candidaturas a incentivos de 17,6 milhões para veículos de emissões reduzidas - diário de notícias || governo apoia até 500 euros compra de trotinetes elétricas, mas só algumas podem circular na estrada? - sic notícias || governo vai lançar apoio à aquisição de painéis solares para famílias - contas poupança || incentivos governamentais na compra de elétricas - motomais || incentivos à aquisição de bicicletas 2025/2026: manual para submissão de candidatura - mubi.pt || incentivos à mobilidade verde regressam com apoios retroativos e candidaturas até fevereiro de 2026 - odigital.pt || incentivos à mobilidade verde regressam com apoios retroativos e candidaturas até fevereiro de 2026 - sapo || novo concurso de apoio à compra de carros elétricos arranca entre maio e junho - jornal de notícias || novo concurso de apoio à compra de carros elétricos arranca entre maio e junho - observador || portugal volta a apoiar a compra de elétricos com até 4.000 euros (até para quem já fez a compra este ano) - 4gnews || quer comprar carro elétrico? governo vai lançar um novo apoio - sic notícias",
+    "last_changed": "2026-05-08T09:48:45Z",
+    "last_severity": "ALERT",
+    "last_evidence": [
+      "candidaturas",
+      "candidatura",
+      "submissão",
+      "mobilidade verde",
+      "fundo ambiental",
+      "veículos elétricos",
+      "carros elétricos",
+      "incentivo",
+      "2026"
+    ],
+    "last_reason": "keyword forte + contexto",
+    "consecutive_failures": 0
   }
 }
