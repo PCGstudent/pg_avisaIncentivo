@@ -136,12 +136,12 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "208ecabecf37e82f1bcae96b5b11355a846229583147a9edecdc714019831e00",
-    "text": "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "text": "",
     "seen_items": [
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol"
     ],
-    "last_changed": "2026-05-08T19:59:56Z",
+    "last_changed": "2026-05-08T22:11:19Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -180,6 +180,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-08T21:11:24Z"
+    "last_run": "2026-05-08T22:11:19Z"
   }
 }
