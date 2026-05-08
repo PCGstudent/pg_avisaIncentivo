@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import calendar
 import hashlib
 import re
 import time
@@ -17,6 +18,12 @@ USER_AGENT = (
     "Mozilla/5.0 (compatible; pg-avisaIncentivo/1.0; +https://github.com/)"
 )
 TIMEOUT = 20
+
+# Janela de relevância para entradas RSS. Notícias mais antigas que isto
+# são contexto histórico — não queremos disparar ALERTs a falar duma
+# coisa que aconteceu há semanas. 10 dias dá folga para fim-de-semana,
+# atrasos do GitHub Actions, e feeds que indexam notícias com delay.
+RSS_RECENT_DAYS = 10
 
 
 @dataclass
@@ -125,27 +132,56 @@ def _fetch_html(source: Source) -> FetchResult:
     return FetchResult(source=source.name, ok=True, text=text, summary=summary)
 
 
+def _entry_age_days(entry: dict) -> float | None:
+    """Return age in days for an RSS entry, or None if no parseable date."""
+    for key in ("published_parsed", "updated_parsed"):
+        struct = entry.get(key)
+        if struct:
+            try:
+                ts = calendar.timegm(struct)
+                age_seconds = time.time() - ts
+                return age_seconds / 86400.0
+            except (TypeError, ValueError):
+                continue
+    return None
+
+
 def _fetch_rss(source: Source) -> FetchResult:
     parsed = feedparser.parse(source.url, request_headers={"User-Agent": USER_AGENT})
     if parsed.bozo and not parsed.entries:
         raise RuntimeError(f"RSS parse failed: {parsed.bozo_exception}")
 
-    # `text` é usado para hash + keyword scan. Tem de ser estável: só títulos
-    # normalizados, ordenados, sem datas nem links (Google News mete tokens
-    # voláteis nos URLs e reordena, o que disparava notificações INFO sem
-    # mudança real de conteúdo).
-    titles: list[str] = []
-    items: list[str] = []  # versão rica para mostrar na notificação
-    for entry in parsed.entries[:15]:
+    # `text` é usado para hash + keyword scan. Tem de ser estável e relevante:
+    # - só títulos normalizados, ordenados, sem datas nem links (Google News
+    #   mete tokens voláteis nos URLs e reordena);
+    # - só entradas dos últimos RSS_RECENT_DAYS dias — notícias antigas a
+    #   entrar/sair do feed mexiam o hash sem informação útil, e ALERTs com
+    #   keywords que só apareciam em notícias velhas são confusos.
+    # Entradas sem data parseável são incluídas (não punir falta de metadata).
+    recent_titles: list[str] = []
+    recent_items: list[str] = []
+    skipped_old = 0
+    for entry in parsed.entries[:30]:
         title = (entry.get("title") or "").strip()
+        if not title:
+            continue
+        age = _entry_age_days(entry)
+        if age is not None and age > RSS_RECENT_DAYS:
+            skipped_old += 1
+            continue
         link = entry.get("link", "")
         published = entry.get("published", "") or entry.get("updated", "")
-        if title:
-            titles.append(_normalise(title.lower()))
-        items.append(f"{published} | {title} | {link}")
+        recent_titles.append(_normalise(title.lower()))
+        recent_items.append(f"{published} | {title} | {link}")
 
-    text = _normalise(" || ".join(sorted(set(titles))))
-    summary = "\n".join(items[:3])
+    if skipped_old:
+        print(
+            f"[{source.name}] RSS: {len(recent_titles)} recentes, "
+            f"{skipped_old} antigas ignoradas (>{RSS_RECENT_DAYS}d)"
+        )
+
+    text = _normalise(" || ".join(sorted(set(recent_titles))))
+    summary = "\n".join(recent_items[:3]) if recent_items else "(sem entradas recentes)"
     return FetchResult(source=source.name, ok=True, text=text, summary=summary)
 
 
