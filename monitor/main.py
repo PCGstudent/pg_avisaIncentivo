@@ -135,6 +135,7 @@ def classify(
 def process_source(source: Source, state: dict) -> dict | None:
     prev = state.get(source.name, {})
     result = fetch(source)
+    meta = state.setdefault("_meta", {})
 
     if not result.ok:
         fails = int(prev.get("consecutive_failures", 0)) + 1
@@ -225,16 +226,24 @@ def process_source(source: Source, state: dict) -> dict | None:
             f"is_real={verdict.is_real_aviso} conf={verdict.confidence:.2f} "
             f"reason={verdict.reason!r}"
         )
+        # Contadores agregados — usados pelo heartbeat para detectar
+        # "Gemini está sempre a rebaixar" ou "Gemini não está disponível".
+        meta["gemini_calls"] = int(meta.get("gemini_calls", 0)) + 1
+        if not verdict.available:
+            meta["gemini_unavailable"] = int(meta.get("gemini_unavailable", 0)) + 1
         if verdict.available:
             if verdict.is_real_aviso and verdict.confidence >= 0.7:
                 # AI confirms — keep/raise to CRITICAL with its reasoning.
                 severity = "CRITICAL"
                 reason = f"{reason} | Gemini: {verdict.reason}"
+                meta["gemini_confirms"] = int(meta.get("gemini_confirms", 0)) + 1
             elif (not verdict.is_real_aviso) and verdict.confidence >= 0.6:
                 # AI rebuts — downgrade to INFO so the phone stays quiet.
                 severity = "INFO"
                 reason = f"rebaixado por Gemini: {verdict.reason}"
-            # else: AI unsure, keep heuristic decision unchanged.
+                meta["gemini_rebuts"] = int(meta.get("gemini_rebuts", 0)) + 1
+            else:
+                meta["gemini_unsure"] = int(meta.get("gemini_unsure", 0)) + 1
 
     if severity == "CRITICAL":
         title = f"🔴 AVISO INCENTIVO EV — {source.name}"
@@ -278,6 +287,14 @@ def process_source(source: Source, state: dict) -> dict | None:
     delivery = notify_all(title, body, severity)
     print(f"[{source.name}] notify -> {delivery}")
 
+    # Contar entregas de email para o heartbeat detectar canal partido.
+    email_status = delivery.get("email", "")
+    if email_status == "ok":
+        meta["email_ok"] = int(meta.get("email_ok", 0)) + 1
+    elif email_status.startswith("error:"):
+        meta["email_errors"] = int(meta.get("email_errors", 0)) + 1
+        meta["last_email_error"] = email_status
+
     # Atualizar set de items vistos: items prévios + items deste fetch.
     # Trim aos mais recentes (current items + tail dos antigos) — assim
     # os items que ainda aparecem no fetch ficam, e os outros expiram.
@@ -299,6 +316,13 @@ def process_source(source: Source, state: dict) -> dict | None:
     }
 
 
+def _bump_meta_counter(state: dict, key: str) -> None:
+    """Increment a named counter in state["_meta"]. Used by heartbeat."""
+    meta = state.setdefault("_meta", {})
+    meta[key] = int(meta.get(key, 0)) + 1
+    meta["last_run"] = now_iso()
+
+
 def main() -> int:
     state = load_state()
     changed = False
@@ -313,11 +337,14 @@ def main() -> int:
             state[source.name] = updated
             changed = True
 
+    # Sempre atualizar timestamp do último run, mesmo sem mudanças, para
+    # o heartbeat poder dizer que o monitor está vivo.
+    state.setdefault("_meta", {})["last_run"] = now_iso()
+    save_state(state)
     if changed:
-        save_state(state)
         print("state saved")
     else:
-        print("no state changes")
+        print("only meta updated")
 
     return 0
 

@@ -70,11 +70,15 @@ jobs:
           fontes_em_falha = []
           ultimo_alerta = None
           ultimo_critical = None
+          meta = {}
           if state_path.exists():
               try:
                   state = json.loads(state_path.read_text(encoding="utf-8"))
-                  fontes_total = len(state)
+                  meta = state.get("_meta", {}) or {}
                   for name, data in state.items():
+                      if name == "_meta":
+                          continue
+                      fontes_total += 1
                       fails = int(data.get("consecutive_failures", 0))
                       if fails >= 3:
                           fontes_em_falha.append(f"{name} ({fails}x)")
@@ -91,13 +95,36 @@ jobs:
               except Exception as exc:  # noqa: BLE001
                   print(f"state read error: {exc}")
 
-          health = "OK" if fail == 0 and not fontes_em_falha else "ATENÇÃO"
+          # Diagnóstico Gemini: se está sempre a rebaixar e nunca a confirmar,
+          # ou nunca disponível, vale a pena saber.
+          g_calls = int(meta.get("gemini_calls", 0))
+          g_confirms = int(meta.get("gemini_confirms", 0))
+          g_rebuts = int(meta.get("gemini_rebuts", 0))
+          g_unsure = int(meta.get("gemini_unsure", 0))
+          g_unavail = int(meta.get("gemini_unavailable", 0))
+
+          # Diagnóstico email: se houve erros de envio, sinalizar.
+          e_ok = int(meta.get("email_ok", 0))
+          e_err = int(meta.get("email_errors", 0))
+          last_email_err = meta.get("last_email_error", "")
+
+          health_problems = []
+          if fail > 0:
+              health_problems.append(f"{fail} runs falharam")
+          if fontes_em_falha:
+              health_problems.append(f"{len(fontes_em_falha)} fontes em falha")
+          if e_err > 0:
+              health_problems.append(f"{e_err} erros de email")
+          if g_calls > 0 and g_unavail / max(g_calls, 1) > 0.5:
+              health_problems.append("Gemini >50% indisponível")
+          health = "OK" if not health_problems else "ATENÇÃO"
 
           lines = [
               f"Heartbeat semanal — monitor incentivo EV ({health})",
               "",
               f"Runs últimos 7 dias:  {ok} OK / {fail} falhas (de {len(runs)} total)",
               f"Fontes monitorizadas: {fontes_total}",
+              f"Último run:           {meta.get('last_run', '?')}",
           ]
           if fontes_em_falha:
               lines.append("")
@@ -114,6 +141,29 @@ jobs:
               lines.append("Último CRITICAL: nunca (esperado até abertura do aviso)")
           if ultimo_alerta:
               lines.append(f"Último ALERT:    {ultimo_alerta[0]} @ {ultimo_alerta[1]}")
+          else:
+              lines.append("Último ALERT:    nenhum")
+
+          # Diagnóstico do canal email + Gemini (cumulativo desde o início).
+          lines.append("")
+          lines.append("--- Saúde dos canais (cumulativo) ---")
+          lines.append(
+              f"Email enviados: {e_ok} ok / {e_err} erros"
+              + (f" — último erro: {last_email_err}" if e_err and last_email_err else "")
+          )
+          if g_calls:
+              lines.append(
+                  f"Gemini judge:   {g_calls} chamadas — "
+                  f"{g_confirms} confirma / {g_rebuts} rebaixa / "
+                  f"{g_unsure} indeciso / {g_unavail} indisponível"
+              )
+          else:
+              lines.append("Gemini judge:   0 chamadas (nada para validar ainda)")
+          if health_problems:
+              lines.append("")
+              lines.append("Problemas:")
+              for p in health_problems:
+                  lines.append(f"  ⚠ {p}")
 
           lines.append("")
           lines.append(f"Repo: https://github.com/{repo}")

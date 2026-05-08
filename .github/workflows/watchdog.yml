@@ -28,6 +28,74 @@ jobs:
       - name: Install requests
         run: pip install requests
 
+      - name: SMTP selftest (canal email vivo?)
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NTFY_SERVER: ${{ secrets.NTFY_SERVER }}
+          EMAIL_SMTP_HOST: ${{ secrets.EMAIL_SMTP_HOST }}
+          EMAIL_SMTP_PORT: ${{ secrets.EMAIL_SMTP_PORT }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        run: |
+          python <<'PY'
+          import os, smtplib, requests
+
+          user = (os.environ.get("EMAIL_USER") or "").strip()
+          pwd = (os.environ.get("EMAIL_PASSWORD") or "").strip()
+          if not (user and pwd):
+              print("SMTP selftest: skipped (no credentials configured)")
+              raise SystemExit(0)
+
+          host = (os.environ.get("EMAIL_SMTP_HOST") or "smtp.gmail.com").strip()
+          port = int((os.environ.get("EMAIL_SMTP_PORT") or "587").strip())
+
+          # Tentar autenticar (sem enviar email). Se a App Password expirou
+          # ou o Gmail bloqueou login, este passo falha e podemos avisar via
+          # ntfy — canal independente do email. Sem isto, descobríamos só
+          # quando aparecesse o aviso real e o email não chegasse.
+          try:
+              with smtplib.SMTP(host, port, timeout=20) as s:
+                  s.starttls()
+                  s.login(user, pwd)
+                  s.noop()
+              print("SMTP selftest: OK")
+              raise SystemExit(0)
+          except SystemExit:
+              raise
+          except Exception as exc:
+              err = f"{type(exc).__name__}: {exc}"
+              print(f"SMTP selftest: FAILED — {err}")
+
+          # Avisar via ntfy (canal independente).
+          topic = (os.environ.get("NTFY_TOPIC") or "").strip()
+          if topic:
+              server = (os.environ.get("NTFY_SERVER") or "https://ntfy.sh").strip()
+              try:
+                  requests.post(
+                      f"{server.rstrip('/')}/{topic}",
+                      data=(
+                          "Canal de EMAIL está partido — App Password expirou, "
+                          "credenciais inválidas, ou Gmail bloqueou login. Os "
+                          "alertas de incentivo EV podem não chegar por email "
+                          "até resolveres isto. ntfy continua a funcionar.\n\n"
+                          f"Erro SMTP: {err}\n"
+                          f"User: {user}\n"
+                          f"Host: {host}:{port}"
+                      ).encode("utf-8"),
+                      headers={
+                          "Title": "🔧 Email do monitor partido",
+                          "Priority": "high",
+                          "Tags": "warning,email",
+                      },
+                      timeout=15,
+                  ).raise_for_status()
+                  print("ntfy alert: sent")
+              except Exception as e:
+                  print(f"ntfy alert: failed ({e})")
+          # Não fazemos fail do step — não queremos que isto bloqueie o
+          # check de freshness que vem a seguir.
+          PY
+
       - name: Verify monitor freshness
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
