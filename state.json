@@ -108,13 +108,13 @@
     "consecutive_failures": 0
   },
   "GoogleNews_IncentivoEletrico": {
-    "hash": "64fce2b64bc3aaa6750ed6bc7928f1d36b9af3708b7bce69131fe885a9a6f1f9",
-    "text": "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
+    "hash": "5a2b37a47db09a455b38e4b7743da99f14fe992d0dded8a450c219c39222719f",
+    "text": "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest || tesla acaba com um dos maiores incentivos para comprar o model 3 em portugal - 4gnews",
     "seen_items": [
       "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
       "tesla acaba com um dos maiores incentivos para comprar o model 3 em portugal - 4gnews"
     ],
-    "last_changed": "2026-05-09T20:03:44Z",
+    "last_changed": "2026-05-09T20:58:17Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -130,15 +130,19 @@
     "consecutive_failures": 0
   },
   "GoogleNews_PAEPlus": {
-    "hash": "27c0836a2b7214e2c1de832f7d015dc9efd927d49118ec62b704e7623f571b34",
-    "text": "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru",
+    "hash": "02281378f3482c2bd1637419623c75f37a1cb84d8645715bda47cc5c70a4f486",
+    "text": "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru || governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
     "seen_items": [
-      "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru"
+      "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru",
+      "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias"
     ],
-    "last_changed": "2026-05-09T09:43:43Z",
+    "last_changed": "2026-05-09T20:58:18Z",
     "last_severity": "INFO",
-    "last_evidence": [],
-    "last_reason": "mudança sem item novo (reordenação/cosmético)",
+    "last_evidence": [
+      "veículos elétricos",
+      "(1 items novos)"
+    ],
+    "last_reason": "item novo mas sem sinal forte",
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
@@ -194,6 +198,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-09T20:03:46Z"
+    "last_run": "2026-05-09T20:58:19Z"
   }
 }
