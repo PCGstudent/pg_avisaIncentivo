@@ -130,26 +130,26 @@
     "consecutive_failures": 0
   },
   "GoogleNews_PAEPlus": {
-    "hash": "42bdf739e2fcf35886c43eaee9d8b47e369eea7db68b1b4e18e2ab868943aa91",
-    "text": "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
+    "hash": "02281378f3482c2bd1637419623c75f37a1cb84d8645715bda47cc5c70a4f486",
+    "text": "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru || governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
     "seen_items": [
-      "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
-      "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru"
+      "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru",
+      "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias"
     ],
-    "last_changed": "2026-05-09T21:50:58Z",
+    "last_changed": "2026-05-09T23:26:46Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "66a3a2b5e48ab815e31c170d39241bc40f438e7bfc61b8475eee39d45079515d",
-    "text": "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "text": "",
     "seen_items": [
       "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol"
     ],
-    "last_changed": "2026-05-09T22:29:21Z",
+    "last_changed": "2026-05-09T23:26:46Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -195,6 +195,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-09T22:29:21Z"
+    "last_run": "2026-05-09T23:26:46Z"
   }
 }
