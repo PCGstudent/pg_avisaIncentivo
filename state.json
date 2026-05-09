@@ -96,15 +96,15 @@
     "consecutive_failures": 0
   },
   "GoogleNews_MobilidadeVerde": {
-    "hash": "4f2d446be50f96b87bfc2b39ce31f9e37129e8cdee37ea19f3b10f370c3b8e05",
-    "text": "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "text": "",
     "seen_items": [
       "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc"
     ],
-    "last_changed": "2026-05-09T03:54:15Z",
+    "last_changed": "2026-05-09T06:11:11Z",
     "last_severity": "INFO",
     "last_evidence": [],
-    "last_reason": "bootstrap (estado inicial registado)",
+    "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "GoogleNews_IncentivoEletrico": {
@@ -130,24 +130,30 @@
     "consecutive_failures": 0
   },
   "GoogleNews_PAEPlus": {
-    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "text": "",
-    "last_changed": "2026-05-08T09:56:53Z",
+    "hash": "27c0836a2b7214e2c1de832f7d015dc9efd927d49118ec62b704e7623f571b34",
+    "text": "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru",
+    "seen_items": [
+      "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru"
+    ],
+    "last_changed": "2026-05-09T06:11:12Z",
     "last_severity": "INFO",
     "last_evidence": [],
-    "last_reason": "mudança sem sinal forte",
+    "last_reason": "bootstrap (estado inicial registado)",
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "208ecabecf37e82f1bcae96b5b11355a846229583147a9edecdc714019831e00",
-    "text": "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol",
+    "hash": "66a3a2b5e48ab815e31c170d39241bc40f438e7bfc61b8475eee39d45079515d",
+    "text": "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
     "seen_items": [
+      "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol"
     ],
-    "last_changed": "2026-05-09T00:09:24Z",
+    "last_changed": "2026-05-09T06:11:13Z",
     "last_severity": "INFO",
-    "last_evidence": [],
-    "last_reason": "mudança sem item novo (reordenação/cosmético)",
+    "last_evidence": [
+      "(1 items novos)"
+    ],
+    "last_reason": "item novo mas sem sinal forte",
     "consecutive_failures": 0
   },
   "ePortugal_IncentivoEV": {
@@ -178,18 +184,18 @@
     "consecutive_failures": 0
   },
   "GoogleNews_DRE_MobilidadeVerde": {
-    "hash": "cef2d00ab0bf38e14928a5110c82b07be913e78bab521ea73ee780844d6311dc",
-    "text": "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "text": "",
     "seen_items": [
       "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale"
     ],
-    "last_changed": "2026-05-09T03:54:13Z",
+    "last_changed": "2026-05-09T06:11:09Z",
     "last_severity": "INFO",
     "last_evidence": [],
-    "last_reason": "bootstrap (estado inicial registado)",
+    "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-09T03:54:17Z"
+    "last_run": "2026-05-09T06:11:13Z"
   }
 }
