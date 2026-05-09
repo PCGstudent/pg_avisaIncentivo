@@ -142,13 +142,13 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "66a3a2b5e48ab815e31c170d39241bc40f438e7bfc61b8475eee39d45079515d",
-    "text": "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
+    "hash": "208ecabecf37e82f1bcae96b5b11355a846229583147a9edecdc714019831e00",
+    "text": "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol",
     "seen_items": [
-      "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
-      "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol"
+      "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol",
+      "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews"
     ],
-    "last_changed": "2026-05-09T16:03:45Z",
+    "last_changed": "2026-05-09T18:01:53Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -194,6 +194,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-09T17:07:15Z"
+    "last_run": "2026-05-09T18:01:53Z"
   }
 }
