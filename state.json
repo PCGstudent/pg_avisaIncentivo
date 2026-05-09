@@ -96,12 +96,15 @@
     "consecutive_failures": 0
   },
   "GoogleNews_MobilidadeVerde": {
-    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "text": "",
-    "last_changed": "2026-05-08T09:56:52Z",
+    "hash": "4f2d446be50f96b87bfc2b39ce31f9e37129e8cdee37ea19f3b10f370c3b8e05",
+    "text": "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
+    "seen_items": [
+      "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc"
+    ],
+    "last_changed": "2026-05-09T03:54:15Z",
     "last_severity": "INFO",
     "last_evidence": [],
-    "last_reason": "mudança sem sinal forte",
+    "last_reason": "bootstrap (estado inicial registado)",
     "consecutive_failures": 0
   },
   "GoogleNews_IncentivoEletrico": {
@@ -175,15 +178,18 @@
     "consecutive_failures": 0
   },
   "GoogleNews_DRE_MobilidadeVerde": {
-    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "text": "",
-    "last_changed": "2026-05-08T09:56:50Z",
+    "hash": "cef2d00ab0bf38e14928a5110c82b07be913e78bab521ea73ee780844d6311dc",
+    "text": "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale",
+    "seen_items": [
+      "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale"
+    ],
+    "last_changed": "2026-05-09T03:54:13Z",
     "last_severity": "INFO",
     "last_evidence": [],
-    "last_reason": "mudança sem sinal forte",
+    "last_reason": "bootstrap (estado inicial registado)",
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-09T00:09:24Z"
+    "last_run": "2026-05-09T03:54:17Z"
   }
 }
