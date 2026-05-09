@@ -130,12 +130,12 @@
     "consecutive_failures": 0
   },
   "GoogleNews_PAEPlus": {
-    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "text": "",
+    "hash": "27c0836a2b7214e2c1de832f7d015dc9efd927d49118ec62b704e7623f571b34",
+    "text": "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru",
     "seen_items": [
       "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru"
     ],
-    "last_changed": "2026-05-09T08:11:07Z",
+    "last_changed": "2026-05-09T09:43:43Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -196,6 +196,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-09T08:11:07Z"
+    "last_run": "2026-05-09T09:43:43Z"
   }
 }
