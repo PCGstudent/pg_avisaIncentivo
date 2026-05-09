@@ -136,27 +136,31 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "text": "",
+    "hash": "208ecabecf37e82f1bcae96b5b11355a846229583147a9edecdc714019831e00",
+    "text": "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol",
     "seen_items": [
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol"
     ],
-    "last_changed": "2026-05-08T22:11:19Z",
+    "last_changed": "2026-05-09T00:09:24Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "ePortugal_IncentivoEV": {
-    "hash": "fd6d85be35a7f89e21bebca6939329e083c3324c53ae76615e452633e542ab84",
-    "text": "O que procura no portal? Há 0 resultados para a sua pesquisa Atualizado em 08.05.2026 Precisa de ajuda? Pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. Contactos Parece que perdemos o fio à meada e não encontramos resultados para esta pesquisa. Experimente outras maneiras de obter os resultados que procura, como por exemplo: escrever outras palavras-chave descrever o que procurava verificar a ortografia.",
-    "last_changed": "2026-05-08T09:43:42Z",
-    "last_severity": "INFO",
-    "last_evidence": [
-      "formulário",
-      "2026"
+    "hash": "b39ee86516a8ff40f967073f68d881d417878ba69c6640f93b363292b238c953",
+    "text": "O que procura no portal? Há 0 resultados para a sua pesquisa Atualizado em 09.05.2026 Precisa de ajuda? Pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. Contactos Parece que perdemos o fio à meada e não encontramos resultados para esta pesquisa. Experimente outras maneiras de obter os resultados que procura, como por exemplo: escrever outras palavras-chave descrever o que procurava verificar a ortografia.",
+    "seen_items": [
+      "há 0 resultados para a sua pesquisa",
+      "pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. contactos",
+      "parece que perdemos o fio à meada e não encontramos resultados para esta pesquisa.",
+      "experimente outras maneiras de obter os resultados que procura, como por exemplo:",
+      "escrever outras palavras-chave"
     ],
-    "last_reason": "rebaixado por Gemini: A página apenas indica que não foram encontrados resultados para a pesquisa, sem menção a abertura de candidaturas ou novos avisos.",
+    "last_changed": "2026-05-09T00:09:20Z",
+    "last_severity": "INFO",
+    "last_evidence": [],
+    "last_reason": "bootstrap (estado inicial registado)",
     "consecutive_failures": 0
   },
   "GoogleNews_DRE_Aviso": {
@@ -180,6 +184,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-08T23:10:25Z"
+    "last_run": "2026-05-09T00:09:24Z"
   }
 }
