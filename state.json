@@ -108,13 +108,13 @@
     "consecutive_failures": 0
   },
   "GoogleNews_IncentivoEletrico": {
-    "hash": "5a2b37a47db09a455b38e4b7743da99f14fe992d0dded8a450c219c39222719f",
-    "text": "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest || tesla acaba com um dos maiores incentivos para comprar o model 3 em portugal - 4gnews",
+    "hash": "ecf9b601d6dc5829617c76bdbbf4bf5bf1698181b5cf6083fa6ac738ffd0e5db",
+    "text": "tesla acaba com um dos maiores incentivos para comprar o model 3 em portugal - 4gnews",
     "seen_items": [
-      "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
-      "tesla acaba com um dos maiores incentivos para comprar o model 3 em portugal - 4gnews"
+      "tesla acaba com um dos maiores incentivos para comprar o model 3 em portugal - 4gnews",
+      "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest"
     ],
-    "last_changed": "2026-05-09T20:58:17Z",
+    "last_changed": "2026-05-10T04:15:16Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -130,13 +130,13 @@
     "consecutive_failures": 0
   },
   "GoogleNews_PAEPlus": {
-    "hash": "42bdf739e2fcf35886c43eaee9d8b47e369eea7db68b1b4e18e2ab868943aa91",
-    "text": "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
+    "hash": "02281378f3482c2bd1637419623c75f37a1cb84d8645715bda47cc5c70a4f486",
+    "text": "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru || governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
     "seen_items": [
-      "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
-      "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru"
+      "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru",
+      "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias"
     ],
-    "last_changed": "2026-05-10T00:11:20Z",
+    "last_changed": "2026-05-10T04:15:17Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -195,6 +195,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-10T00:11:20Z"
+    "last_run": "2026-05-10T04:15:17Z"
   }
 }
