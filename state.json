@@ -108,16 +108,20 @@
     "consecutive_failures": 0
   },
   "GoogleNews_IncentivoEletrico": {
-    "hash": "64fce2b64bc3aaa6750ed6bc7928f1d36b9af3708b7bce69131fe885a9a6f1f9",
-    "text": "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
+    "hash": "c2af101643029a0241d42b398568d30fcc1f93a0013598d5aac3c5a3e0179dd2",
+    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
     "seen_items": [
+      "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
       "tesla acaba com um dos maiores incentivos para comprar o model 3 em portugal - 4gnews"
     ],
-    "last_changed": "2026-05-10T15:37:01Z",
+    "last_changed": "2026-05-10T17:33:13Z",
     "last_severity": "INFO",
-    "last_evidence": [],
-    "last_reason": "mudança sem item novo (reordenação/cosmético)",
+    "last_evidence": [
+      "carros elétricos",
+      "(1 items novos)"
+    ],
+    "last_reason": "item novo mas sem sinal forte",
     "consecutive_failures": 0
   },
   "GoogleNews_AvisoFundoAmbiental": {
@@ -143,16 +147,20 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "text": "",
+    "hash": "d1a176419c7bd9308c0c4b1cf9014e4af56796c54655d2fa15e88e23c235763e",
+    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
     "seen_items": [
+      "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol"
     ],
-    "last_changed": "2026-05-10T15:37:03Z",
+    "last_changed": "2026-05-10T17:33:14Z",
     "last_severity": "INFO",
-    "last_evidence": [],
-    "last_reason": "mudança sem item novo (reordenação/cosmético)",
+    "last_evidence": [
+      "carros elétricos",
+      "(1 items novos)"
+    ],
+    "last_reason": "item novo mas sem sinal forte",
     "consecutive_failures": 0
   },
   "ePortugal_IncentivoEV": {
@@ -195,6 +203,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-10T16:33:55Z"
+    "last_run": "2026-05-10T17:33:14Z"
   }
 }
