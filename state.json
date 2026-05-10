@@ -108,13 +108,13 @@
     "consecutive_failures": 0
   },
   "GoogleNews_IncentivoEletrico": {
-    "hash": "64fce2b64bc3aaa6750ed6bc7928f1d36b9af3708b7bce69131fe885a9a6f1f9",
-    "text": "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "text": "",
     "seen_items": [
       "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
       "tesla acaba com um dos maiores incentivos para comprar o model 3 em portugal - 4gnews"
     ],
-    "last_changed": "2026-05-10T08:32:27Z",
+    "last_changed": "2026-05-10T14:41:11Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -195,6 +195,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-10T13:45:28Z"
+    "last_run": "2026-05-10T14:41:12Z"
   }
 }
