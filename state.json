@@ -164,8 +164,8 @@
     "consecutive_failures": 0
   },
   "ePortugal_IncentivoEV": {
-    "hash": "54e88a48283dd1df043b51385cebf0f6ce0fe33e6146f826d5e8af7d7c00d7ba",
-    "text": "O que procura no portal? Há 0 resultados para a sua pesquisa Atualizado em 10.05.2026 Precisa de ajuda? Pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. Contactos Parece que perdemos o fio à meada e não encontramos resultados para esta pesquisa. Experimente outras maneiras de obter os resultados que procura, como por exemplo: escrever outras palavras-chave descrever o que procurava verificar a ortografia.",
+    "hash": "2448d99a9f677dfcaccb8919d21c8c6f8a102cee53f37f6c6182a762b67ab699",
+    "text": "O que procura no portal? Há 0 resultados para a sua pesquisa Atualizado em 11.05.2026 Precisa de ajuda? Pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. Contactos Parece que perdemos o fio à meada e não encontramos resultados para esta pesquisa. Experimente outras maneiras de obter os resultados que procura, como por exemplo: escrever outras palavras-chave descrever o que procurava verificar a ortografia.",
     "seen_items": [
       "há 0 resultados para a sua pesquisa",
       "pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. contactos",
@@ -173,7 +173,7 @@
       "experimente outras maneiras de obter os resultados que procura, como por exemplo:",
       "escrever outras palavras-chave"
     ],
-    "last_changed": "2026-05-10T00:11:16Z",
+    "last_changed": "2026-05-11T00:06:28Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -203,6 +203,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-10T23:08:19Z"
+    "last_run": "2026-05-11T00:06:32Z"
   }
 }
