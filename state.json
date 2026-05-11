@@ -344,14 +344,14 @@
     "consecutive_failures": 0
   },
   "GoogleNews_IncentivoEletrico": {
-    "hash": "d1a176419c7bd9308c0c4b1cf9014e4af56796c54655d2fa15e88e23c235763e",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
+    "hash": "c2af101643029a0241d42b398568d30fcc1f93a0013598d5aac3c5a3e0179dd2",
+    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
     "seen_items": [
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
       "tesla acaba com um dos maiores incentivos para comprar o model 3 em portugal - 4gnews"
     ],
-    "last_changed": "2026-05-11T20:13:16Z",
+    "last_changed": "2026-05-11T21:42:38Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -433,6 +433,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-11T20:13:18Z"
+    "last_run": "2026-05-11T21:42:40Z"
   }
 }
