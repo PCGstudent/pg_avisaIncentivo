@@ -287,19 +287,21 @@
     "consecutive_failures": 0
   },
   "Gov_Ambiente_Comunicados": {
-    "hash": "98f052d443eb62a1a9b7e3c71722005abb4a4145e784dc4309e1fe83689d58e8",
-    "text": "Partilhe este conteúdo",
-    "last_changed": "2026-04-29T10:44:32Z",
+    "hash": "4682fb6c29a159cb2fbc4a715cc39980d39ad41a19dfa88fb858665067cef737",
+    "text": "HTTP_STATUS_404",
+    "last_changed": "2026-05-12T10:15:03Z",
     "last_severity": "INFO",
-    "last_matched": [],
+    "last_evidence": [],
+    "last_reason": "página passou a estado de erro (silenciado)",
     "consecutive_failures": 0
   },
   "Gov_Ambiente_Noticias": {
-    "hash": "98f052d443eb62a1a9b7e3c71722005abb4a4145e784dc4309e1fe83689d58e8",
-    "text": "Partilhe este conteúdo",
-    "last_changed": "2026-04-29T10:44:35Z",
+    "hash": "4682fb6c29a159cb2fbc4a715cc39980d39ad41a19dfa88fb858665067cef737",
+    "text": "HTTP_STATUS_404",
+    "last_changed": "2026-05-12T10:15:03Z",
     "last_severity": "INFO",
-    "last_matched": [],
+    "last_evidence": [],
+    "last_reason": "página passou a estado de erro (silenciado)",
     "consecutive_failures": 0
   },
   "ACAP_Noticias": {
@@ -433,6 +435,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-12T07:41:38Z"
+    "last_run": "2026-05-12T10:15:09Z"
   }
 }
