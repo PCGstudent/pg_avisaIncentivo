@@ -384,14 +384,14 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "f7ef782837fd33830305889bbfa27ee120b41ed8358fa42fe26d952643b7aef8",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol",
+    "hash": "d1a176419c7bd9308c0c4b1cf9014e4af56796c54655d2fa15e88e23c235763e",
+    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
     "seen_items": [
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol",
       "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews"
     ],
-    "last_changed": "2026-05-12T15:14:18Z",
+    "last_changed": "2026-05-12T19:16:04Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -437,6 +437,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-12T17:24:39Z"
+    "last_run": "2026-05-12T19:16:04Z"
   }
 }
