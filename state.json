@@ -287,21 +287,23 @@
     "consecutive_failures": 0
   },
   "Gov_Ambiente_Comunicados": {
-    "hash": "4682fb6c29a159cb2fbc4a715cc39980d39ad41a19dfa88fb858665067cef737",
-    "text": "HTTP_STATUS_404",
-    "last_changed": "2026-05-12T10:15:03Z",
+    "hash": "98f052d443eb62a1a9b7e3c71722005abb4a4145e784dc4309e1fe83689d58e8",
+    "text": "Partilhe este conteúdo",
+    "seen_items": [],
+    "last_changed": "2026-05-12T12:20:15Z",
     "last_severity": "INFO",
     "last_evidence": [],
-    "last_reason": "página passou a estado de erro (silenciado)",
+    "last_reason": "bootstrap (estado inicial registado)",
     "consecutive_failures": 0
   },
   "Gov_Ambiente_Noticias": {
-    "hash": "4682fb6c29a159cb2fbc4a715cc39980d39ad41a19dfa88fb858665067cef737",
-    "text": "HTTP_STATUS_404",
-    "last_changed": "2026-05-12T10:15:03Z",
+    "hash": "98f052d443eb62a1a9b7e3c71722005abb4a4145e784dc4309e1fe83689d58e8",
+    "text": "Partilhe este conteúdo",
+    "seen_items": [],
+    "last_changed": "2026-05-12T12:20:16Z",
     "last_severity": "INFO",
     "last_evidence": [],
-    "last_reason": "página passou a estado de erro (silenciado)",
+    "last_reason": "bootstrap (estado inicial registado)",
     "consecutive_failures": 0
   },
   "ACAP_Noticias": {
@@ -382,14 +384,14 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "d1a176419c7bd9308c0c4b1cf9014e4af56796c54655d2fa15e88e23c235763e",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
+    "hash": "bda9f793f6543d70433f753e98bc2d3a9655cf3d4a7bf3f630bc454fe5cb6d02",
+    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
     "seen_items": [
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol"
     ],
-    "last_changed": "2026-05-12T07:41:38Z",
+    "last_changed": "2026-05-12T12:20:21Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -435,6 +437,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-12T10:15:09Z"
+    "last_run": "2026-05-12T12:20:21Z"
   }
 }
