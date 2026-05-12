@@ -380,22 +380,22 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "bda9f793f6543d70433f753e98bc2d3a9655cf3d4a7bf3f630bc454fe5cb6d02",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
+    "hash": "d1a176419c7bd9308c0c4b1cf9014e4af56796c54655d2fa15e88e23c235763e",
+    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
     "seen_items": [
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol"
     ],
-    "last_changed": "2026-05-11T23:40:03Z",
+    "last_changed": "2026-05-12T01:23:56Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "ePortugal_IncentivoEV": {
-    "hash": "2448d99a9f677dfcaccb8919d21c8c6f8a102cee53f37f6c6182a762b67ab699",
-    "text": "O que procura no portal? Há 0 resultados para a sua pesquisa Atualizado em 11.05.2026 Precisa de ajuda? Pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. Contactos Parece que perdemos o fio à meada e não encontramos resultados para esta pesquisa. Experimente outras maneiras de obter os resultados que procura, como por exemplo: escrever outras palavras-chave descrever o que procurava verificar a ortografia.",
+    "hash": "8cdbef6197e562d268738372f3d52beeab0550d2db01c4c785e521b5ff9c622f",
+    "text": "O que procura no portal? Há 0 resultados para a sua pesquisa Atualizado em 12.05.2026 Precisa de ajuda? Pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. Contactos Parece que perdemos o fio à meada e não encontramos resultados para esta pesquisa. Experimente outras maneiras de obter os resultados que procura, como por exemplo: escrever outras palavras-chave descrever o que procurava verificar a ortografia.",
     "seen_items": [
       "há 0 resultados para a sua pesquisa",
       "pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. contactos",
@@ -403,7 +403,7 @@
       "experimente outras maneiras de obter os resultados que procura, como por exemplo:",
       "escrever outras palavras-chave"
     ],
-    "last_changed": "2026-05-11T00:06:28Z",
+    "last_changed": "2026-05-12T01:23:52Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -433,6 +433,6 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-11T23:40:03Z"
+    "last_run": "2026-05-12T01:23:56Z"
   }
 }
