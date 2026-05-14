@@ -380,20 +380,17 @@
     "consecutive_failures": 0
   },
   "GoogleNews_PAEPlus": {
-    "hash": "6b2bdbdd102b59c806565ee128d0f0b40179c09176f5f163d8213cd3daa719b4",
-    "text": "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - msn || governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
+    "hash": "42bdf739e2fcf35886c43eaee9d8b47e369eea7db68b1b4e18e2ab868943aa91",
+    "text": "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
     "seen_items": [
-      "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - msn",
       "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
+      "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - msn",
       "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru"
     ],
-    "last_changed": "2026-05-14T20:09:43Z",
+    "last_changed": "2026-05-14T21:22:20Z",
     "last_severity": "INFO",
-    "last_evidence": [
-      "veículos elétricos",
-      "(1 items novos)"
-    ],
-    "last_reason": "item novo mas sem sinal forte",
+    "last_evidence": [],
+    "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
@@ -442,21 +439,21 @@
     "consecutive_failures": 0
   },
   "GoogleNews_DRE_MobilidadeVerde": {
-    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "text": "",
+    "hash": "4f2d446be50f96b87bfc2b39ce31f9e37129e8cdee37ea19f3b10f370c3b8e05",
+    "text": "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
     "seen_items": [
       "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
       "byd abre vagas para reparador automotivo, analista de recrutamento e mais funções na bahia; veja como se candidatar - empregos na bahia",
       "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale"
     ],
-    "last_changed": "2026-05-14T14:41:53Z",
+    "last_changed": "2026-05-14T21:22:16Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-14T20:09:43Z",
+    "last_run": "2026-05-14T21:22:20Z",
     "email_ok": 2
   }
 }
