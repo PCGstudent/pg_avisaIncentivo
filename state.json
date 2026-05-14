@@ -328,15 +328,20 @@
     "consecutive_failures": 0
   },
   "GoogleNews_FundoAmbiental_VE": {
-    "hash": "d1a176419c7bd9308c0c4b1cf9014e4af56796c54655d2fa15e88e23c235763e",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
+    "hash": "26c39e99c3060e4e060e4b17a89ed6abf81f934ff11eea1a428ae6704e8f6cee",
+    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || carros elétricos usados deviam ter subsídio em portugal? - leak.pt",
     "seen_items": [
-      "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias"
+      "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
+      "carros elétricos usados deviam ter subsídio em portugal? - leak.pt"
     ],
-    "last_changed": "2026-05-11T14:03:17Z",
-    "last_severity": "INFO",
-    "last_evidence": [],
-    "last_reason": "bootstrap (estado inicial registado)",
+    "last_changed": "2026-05-14T18:19:47Z",
+    "last_severity": "ALERT",
+    "last_evidence": [
+      "carros elétricos",
+      "subsídio",
+      "(1 items novos)"
+    ],
+    "last_reason": "sinais parciais em item novo",
     "consecutive_failures": 0
   },
   "GoogleNews_MobilidadeVerde": {
@@ -447,7 +452,7 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-14T16:33:30Z",
-    "email_ok": 1
+    "last_run": "2026-05-14T18:19:49Z",
+    "email_ok": 2
   }
 }
