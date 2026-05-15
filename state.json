@@ -391,18 +391,18 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "7a06bcc2db1ecd7b2846d38df9e49fe74027d684d1dd0a1cbec52074fb312027",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews",
+    "hash": "ce2f76be0ca4f5dd51cb46348675ff357550565344beef9cb9ed1edd23132e4e",
+    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews || oficial! volkswagen lança novo carro elétrico e já podes comprar em portugal - 4gnews",
     "seen_items": [
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews",
+      "oficial! volkswagen lança novo carro elétrico e já podes comprar em portugal - 4gnews",
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol",
       "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews"
     ],
-    "last_changed": "2026-05-13T15:19:08Z",
+    "last_changed": "2026-05-15T22:40:06Z",
     "last_severity": "INFO",
     "last_evidence": [
-      "incentivo",
       "(1 items novos)"
     ],
     "last_reason": "item novo mas sem sinal forte",
@@ -450,7 +450,7 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-15T21:45:26Z",
+    "last_run": "2026-05-15T22:40:06Z",
     "email_ok": 2
   }
 }
