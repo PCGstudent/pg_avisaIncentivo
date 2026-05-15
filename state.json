@@ -380,14 +380,14 @@
     "consecutive_failures": 0
   },
   "GoogleNews_PAEPlus": {
-    "hash": "42bdf739e2fcf35886c43eaee9d8b47e369eea7db68b1b4e18e2ab868943aa91",
-    "text": "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "text": "",
     "seen_items": [
       "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
       "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - msn",
       "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru"
     ],
-    "last_changed": "2026-05-14T21:22:20Z",
+    "last_changed": "2026-05-15T01:26:20Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -412,8 +412,8 @@
     "consecutive_failures": 0
   },
   "ePortugal_IncentivoEV": {
-    "hash": "d6acfdd75fb89c0acda0aaf136c7c4447270e39e346dab6907c590d075e1541e",
-    "text": "O que procura no portal? Há 0 resultados para a sua pesquisa Atualizado em 14.05.2026 Precisa de ajuda? Pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. Contactos Parece que perdemos o fio à meada e não encontramos resultados para esta pesquisa. Experimente outras maneiras de obter os resultados que procura, como por exemplo: escrever outras palavras-chave descrever o que procurava verificar a ortografia.",
+    "hash": "70a24e1b9bfd2c9886bf488660838510e1d6bb1c42047dae37043a9e30da49f4",
+    "text": "O que procura no portal? Há 0 resultados para a sua pesquisa Atualizado em 15.05.2026 Precisa de ajuda? Pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. Contactos Parece que perdemos o fio à meada e não encontramos resultados para esta pesquisa. Experimente outras maneiras de obter os resultados que procura, como por exemplo: escrever outras palavras-chave descrever o que procurava verificar a ortografia.",
     "seen_items": [
       "há 0 resultados para a sua pesquisa",
       "pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. contactos",
@@ -421,7 +421,7 @@
       "experimente outras maneiras de obter os resultados que procura, como por exemplo:",
       "escrever outras palavras-chave"
     ],
-    "last_changed": "2026-05-14T01:29:17Z",
+    "last_changed": "2026-05-15T01:26:15Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -453,7 +453,7 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-14T23:33:34Z",
+    "last_run": "2026-05-15T01:26:21Z",
     "email_ok": 2
   }
 }
