@@ -307,8 +307,8 @@
     "consecutive_failures": 0
   },
   "ACAP_Noticias": {
-    "hash": "5d603e56a84fcbeacece00f5f5d0c677d2c55b581dd3ca3560f5ddb08e00cecb",
-    "text": "ACAP | Home ACAP Sectores Estatísticas Comunicação Serviços menu ACAP Sectores Estatísticas Comunicação Serviços Adesão Contactos My ACAP Pesquisa PT | EN Fórum DPAI/ACAP - Para quem move o aftermarket Inscrições abertas: 29 de Maio | Auditório da Exponor. Saiba Mais Mercado Automóvel em Portugal Abril 2026 Saiba Mais PRODUÇÃO AUTOMÓVEL EM PORTUGAL Abril 2026 Saiba Mais Já verificou se o seu veículo tem recall? A ACAP, em parceria com o IMT e com o apoio da Direção-Geral do Consumidor (DGC), disponibiliza uma plataforma online que permite aos condutores verificar se um veículo está abrangido por alguma acção de recall Saiba Mais SCROLL Adesão Contactos My ACAP Pesquisa Redes Sociais Notícias Gestão de resíduos de baterias VALORCAR divulga importante informação aos distribuidores de baterias sobre estes resíduos Secretário-Geral integra painel da Talk BMW no Portugal Smart Cities Summit ACAP comenta mercado automóvel no 1º Quadrimestre na SIC, RTP e TVI O sector Automóvel em números 0 Empresas 0 mM Facturação / ano 0 % Receitas fiscais do estado 0 Trabalhadores Universo ACAP Ver Website Ver Website Ver Website Ver Website Ver Website Filiações Internacionais Ver Website Ver Website Ver Website Ver Website Fique a par das nossas novidades Aceito receber newsletters Li e aceito a política de privacidade Lisboa Morada Av.Torre de Belém, 29 1400-342 Lisboa Telefone +351 213 035 300* E-mail mail@acap.pt GPS 38º42'05\" N 9º12'50.4 W *(Custo de chamada para rede fixa nacional) Porto Morada Rua de Stª Catarina, 693, 4º 4000-454 Porto Telefone +351 222 005 606* E-mail porto@acap.pt GPS 41º09'08.4\"N 8º36'13.5\"W *(Custo de chamada para rede fixa nacional) Acompanhe a ACAP nas redes sociais Website ACAP com o apoio © 2026 design by ativait | development by designbinário . Todos os direitos reservados. Política de privacidade . Consulte aqui a Política de Concorrência ACAP.",
+    "hash": "f3895314196a68aa6c13cfe9b5b30c533877703bb7d04c75d896efc8dcd6a467",
+    "text": "Um momento, por favorâ¦ Aguarde enquanto sua solicitaÃ§Ã£o estÃ¡ sendo verificadaâ¦",
     "seen_items": [
       "fórum dpai/acap - para quem move o aftermarket inscrições abertas: 29 de maio | auditório da exponor. saiba mais",
       "mercado automóvel em portugal abril 2026 saiba mais",
@@ -318,13 +318,10 @@
       "© 2026 design by ativait | development by designbinário . todos os direitos reservados. política de privacidade .",
       "produção automóvel em portugal março 2026 saiba mais"
     ],
-    "last_changed": "2026-05-14T10:30:11Z",
+    "last_changed": "2026-05-15T14:44:45Z",
     "last_severity": "INFO",
-    "last_evidence": [
-      "2026",
-      "(1 items novos)"
-    ],
-    "last_reason": "item novo mas sem sinal forte",
+    "last_evidence": [],
+    "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "GoogleNews_FundoAmbiental_VE": {
@@ -453,7 +450,7 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-15T12:24:30Z",
+    "last_run": "2026-05-15T14:44:48Z",
     "email_ok": 2
   }
 }
