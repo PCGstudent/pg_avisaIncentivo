@@ -439,21 +439,21 @@
     "consecutive_failures": 0
   },
   "GoogleNews_DRE_MobilidadeVerde": {
-    "hash": "4f2d446be50f96b87bfc2b39ce31f9e37129e8cdee37ea19f3b10f370c3b8e05",
-    "text": "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
+    "hash": "5ac31529b700e46ad8326b08e58a9587019a6857d0972811399040fef727635d",
+    "text": "byd abre vagas para reparador automotivo, analista de recrutamento e mais funções na bahia; veja como se candidatar - empregos na bahia || incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
     "seen_items": [
-      "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
       "byd abre vagas para reparador automotivo, analista de recrutamento e mais funções na bahia; veja como se candidatar - empregos na bahia",
+      "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
       "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale"
     ],
-    "last_changed": "2026-05-14T23:33:30Z",
+    "last_changed": "2026-05-15T08:17:33Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-15T05:12:57Z",
+    "last_run": "2026-05-15T08:17:36Z",
     "email_ok": 2
   }
 }
