@@ -391,18 +391,18 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "e0574b276a5763ecf02558a033662d729cac482b8d0aaf2df884465898172a02",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews || incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews || isto é o futuro para quem tem carro elétrico: portugal tem de copiar amesterdão - 4gnews || o teu próximo carro pode ser chinês e elétrico: eis o porquê - 4gnews || oficial! volkswagen lança novo carro elétrico e já podes comprar em portugal - 4gnews",
+    "hash": "ec5864741c871d8974f063940b0eb55eb6864cba18244c68c19c0e112195ba0b",
+    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews || incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews || o teu próximo carro pode ser chinês e elétrico: eis o porquê - 4gnews || oficial! volkswagen lança novo carro elétrico e já podes comprar em portugal - 4gnews",
     "seen_items": [
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
       "incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews",
-      "isto é o futuro para quem tem carro elétrico: portugal tem de copiar amesterdão - 4gnews",
       "o teu próximo carro pode ser chinês e elétrico: eis o porquê - 4gnews",
       "oficial! volkswagen lança novo carro elétrico e já podes comprar em portugal - 4gnews",
+      "isto é o futuro para quem tem carro elétrico: portugal tem de copiar amesterdão - 4gnews",
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol"
     ],
-    "last_changed": "2026-05-16T08:58:40Z",
+    "last_changed": "2026-05-16T10:20:36Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -450,7 +450,7 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-16T08:58:40Z",
+    "last_run": "2026-05-16T10:20:36Z",
     "email_ok": 2
   }
 }
