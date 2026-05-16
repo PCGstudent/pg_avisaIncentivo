@@ -440,21 +440,24 @@
     "consecutive_failures": 0
   },
   "GoogleNews_DRE_MobilidadeVerde": {
-    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "text": "",
+    "hash": "818ab693d32c9b36856089515304ca8d2e746845f38724349e24b98103e2ac45",
+    "text": "centro social e paroquial de rio caldo adquire viatura 100 % elétrica para o serviço de apoio domiciliário - correio do minho",
     "seen_items": [
+      "centro social e paroquial de rio caldo adquire viatura 100 % elétrica para o serviço de apoio domiciliário - correio do minho",
       "byd abre vagas para reparador automotivo, analista de recrutamento e mais funções na bahia; veja como se candidatar - empregos na bahia",
       "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
       "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale"
     ],
-    "last_changed": "2026-05-16T19:22:30Z",
+    "last_changed": "2026-05-16T21:59:57Z",
     "last_severity": "INFO",
-    "last_evidence": [],
-    "last_reason": "mudança sem item novo (reordenação/cosmético)",
+    "last_evidence": [
+      "(1 items novos)"
+    ],
+    "last_reason": "item novo mas sem sinal forte",
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-16T21:03:54Z",
+    "last_run": "2026-05-16T22:00:00Z",
     "email_ok": 2
   }
 }
