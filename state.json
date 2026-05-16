@@ -391,17 +391,18 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "0b806d69163acb35ce069c58bd82c92c878d97666fb3dee4e130c3a6c2af5b0e",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews || isto é o futuro para quem tem carro elétrico: portugal tem de copiar amesterdão - 4gnews || oficial! volkswagen lança novo carro elétrico e já podes comprar em portugal - 4gnews",
+    "hash": "6f57b2ff385b2aca8b88b72f4a3fbdbfc55de9f569cc9605729aa3276f219b24",
+    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews || isto é o futuro para quem tem carro elétrico: portugal tem de copiar amesterdão - 4gnews || o teu próximo carro pode ser chinês e elétrico: eis o porquê - 4gnews || oficial! volkswagen lança novo carro elétrico e já podes comprar em portugal - 4gnews",
     "seen_items": [
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews",
       "isto é o futuro para quem tem carro elétrico: portugal tem de copiar amesterdão - 4gnews",
+      "o teu próximo carro pode ser chinês e elétrico: eis o porquê - 4gnews",
       "oficial! volkswagen lança novo carro elétrico e já podes comprar em portugal - 4gnews",
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol",
       "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews"
     ],
-    "last_changed": "2026-05-15T23:37:35Z",
+    "last_changed": "2026-05-16T04:44:51Z",
     "last_severity": "INFO",
     "last_evidence": [
       "(1 items novos)"
@@ -437,21 +438,21 @@
     "consecutive_failures": 0
   },
   "GoogleNews_DRE_MobilidadeVerde": {
-    "hash": "4f2d446be50f96b87bfc2b39ce31f9e37129e8cdee37ea19f3b10f370c3b8e05",
-    "text": "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
+    "hash": "239ebf8025a70b453c7580e06001e4b78590b0eddb4a75218ab5cb662f20ff50",
+    "text": "byd abre vagas para reparador automotivo, analista de recrutamento e mais funções na bahia; veja como se candidatar - empregos na bahia",
     "seen_items": [
-      "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
       "byd abre vagas para reparador automotivo, analista de recrutamento e mais funções na bahia; veja como se candidatar - empregos na bahia",
+      "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
       "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale"
     ],
-    "last_changed": "2026-05-16T01:22:25Z",
+    "last_changed": "2026-05-16T04:44:47Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-16T01:22:32Z",
+    "last_run": "2026-05-16T04:44:51Z",
     "email_ok": 2
   }
 }
