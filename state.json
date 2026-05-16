@@ -395,18 +395,18 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "d7fac7844fa3de6b2b7aff1ff37e503ad9ff867deb032ec01c923fb2b726f798",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews || incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews",
+    "hash": "7a06bcc2db1ecd7b2846d38df9e49fe74027d684d1dd0a1cbec52074fb312027",
+    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews",
     "seen_items": [
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
-      "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
       "incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews",
+      "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
       "o teu próximo carro pode ser chinês e elétrico: eis o porquê - 4gnews",
       "oficial! volkswagen lança novo carro elétrico e já podes comprar em portugal - 4gnews",
       "isto é o futuro para quem tem carro elétrico: portugal tem de copiar amesterdão - 4gnews",
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol"
     ],
-    "last_changed": "2026-05-16T12:40:43Z",
+    "last_changed": "2026-05-16T22:56:26Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -457,7 +457,7 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-16T22:00:00Z",
+    "last_run": "2026-05-16T22:56:26Z",
     "email_ok": 2
   }
 }
