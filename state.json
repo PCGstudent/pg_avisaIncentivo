@@ -325,20 +325,20 @@
     "consecutive_failures": 0
   },
   "GoogleNews_FundoAmbiental_VE": {
-    "hash": "26c39e99c3060e4e060e4b17a89ed6abf81f934ff11eea1a428ae6704e8f6cee",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || carros elétricos usados deviam ter subsídio em portugal? - leak.pt",
+    "hash": "1ff7a80e4d2669720aa850f093e926e87e3093b579349530cbf76f1bbdae62e2",
+    "text": "apoio financeiro para compra de carros elétricos usados? boa ideia - pplware || apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || carros elétricos usados deviam ter subsídio em portugal? - leak.pt",
     "seen_items": [
+      "apoio financeiro para compra de carros elétricos usados? boa ideia - pplware",
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "carros elétricos usados deviam ter subsídio em portugal? - leak.pt"
     ],
-    "last_changed": "2026-05-14T18:19:47Z",
-    "last_severity": "ALERT",
+    "last_changed": "2026-05-16T14:09:05Z",
+    "last_severity": "INFO",
     "last_evidence": [
       "carros elétricos",
-      "subsídio",
       "(1 items novos)"
     ],
-    "last_reason": "sinais parciais em item novo",
+    "last_reason": "item novo mas sem sinal forte",
     "consecutive_failures": 0
   },
   "GoogleNews_MobilidadeVerde": {
@@ -354,17 +354,21 @@
     "consecutive_failures": 0
   },
   "GoogleNews_IncentivoEletrico": {
-    "hash": "d1a176419c7bd9308c0c4b1cf9014e4af56796c54655d2fa15e88e23c235763e",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
+    "hash": "86331755b32ef8d0823657b52d2d0f7cadbc6985300d305f5745449b3a6a0809",
+    "text": "apoio financeiro para compra de carros elétricos usados? boa ideia - pplware || apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
     "seen_items": [
+      "apoio financeiro para compra de carros elétricos usados? boa ideia - pplware",
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
       "tesla acaba com um dos maiores incentivos para comprar o model 3 em portugal - 4gnews"
     ],
-    "last_changed": "2026-05-12T07:41:37Z",
+    "last_changed": "2026-05-16T14:09:06Z",
     "last_severity": "INFO",
-    "last_evidence": [],
-    "last_reason": "mudança sem item novo (reordenação/cosmético)",
+    "last_evidence": [
+      "carros elétricos",
+      "(1 items novos)"
+    ],
+    "last_reason": "item novo mas sem sinal forte",
     "consecutive_failures": 0
   },
   "GoogleNews_AvisoFundoAmbiental": {
@@ -436,21 +440,21 @@
     "consecutive_failures": 0
   },
   "GoogleNews_DRE_MobilidadeVerde": {
-    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "text": "",
+    "hash": "239ebf8025a70b453c7580e06001e4b78590b0eddb4a75218ab5cb662f20ff50",
+    "text": "byd abre vagas para reparador automotivo, analista de recrutamento e mais funções na bahia; veja como se candidatar - empregos na bahia",
     "seen_items": [
       "byd abre vagas para reparador automotivo, analista de recrutamento e mais funções na bahia; veja como se candidatar - empregos na bahia",
       "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
       "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale"
     ],
-    "last_changed": "2026-05-16T11:29:30Z",
+    "last_changed": "2026-05-16T14:09:04Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-16T12:40:43Z",
+    "last_run": "2026-05-16T14:09:07Z",
     "email_ok": 2
   }
 }
