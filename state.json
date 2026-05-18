@@ -440,8 +440,8 @@
     "consecutive_failures": 0
   },
   "GoogleNews_DRE_MobilidadeVerde": {
-    "hash": "f5b22822820306ae295bdf0dfc5d2272628a0fcb7223445238c5ab77014a0290",
-    "text": "app gov.pt recebe finalmente funcionalidade que faz a diferença na vida de milhares de portugueses - 4gnews || centro social e paroquial de rio caldo adquire viatura 100 % elétrica para o serviço de apoio domiciliário - correio do minho",
+    "hash": "074d11f1d2de0103dc16fa0b0db1318f9da2167472c3eaca9d35cda01d6578e8",
+    "text": "app gov.pt recebe finalmente funcionalidade que faz a diferença na vida de milhares de portugueses - 4gnews",
     "seen_items": [
       "app gov.pt recebe finalmente funcionalidade que faz a diferença na vida de milhares de portugueses - 4gnews",
       "centro social e paroquial de rio caldo adquire viatura 100 % elétrica para o serviço de apoio domiciliário - correio do minho",
@@ -449,16 +449,14 @@
       "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
       "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale"
     ],
-    "last_changed": "2026-05-18T16:16:05Z",
+    "last_changed": "2026-05-18T18:13:20Z",
     "last_severity": "INFO",
-    "last_evidence": [
-      "(1 items novos)"
-    ],
-    "last_reason": "item novo mas sem sinal forte",
+    "last_evidence": [],
+    "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-18T16:16:09Z",
+    "last_run": "2026-05-18T18:13:24Z",
     "email_ok": 2
   }
 }
