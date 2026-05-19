@@ -413,8 +413,8 @@
     "consecutive_failures": 0
   },
   "ePortugal_IncentivoEV": {
-    "hash": "e844068e1a80eebaa79228b4d4ac91f4f4890f4d7518f7335849512e58013dfe",
-    "text": "O que procura no portal? Há 0 resultados para a sua pesquisa Atualizado em 18.05.2026 Precisa de ajuda? Pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. Contactos Parece que perdemos o fio à meada e não encontramos resultados para esta pesquisa. Experimente outras maneiras de obter os resultados que procura, como por exemplo: escrever outras palavras-chave descrever o que procurava verificar a ortografia.",
+    "hash": "7f525fe1031c012bd8e9c6aa929897be808e58fd9188cd3b575d1f60a6cc9559",
+    "text": "O que procura no portal? Há 0 resultados para a sua pesquisa Atualizado em 19.05.2026 Precisa de ajuda? Pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. Contactos Parece que perdemos o fio à meada e não encontramos resultados para esta pesquisa. Experimente outras maneiras de obter os resultados que procura, como por exemplo: escrever outras palavras-chave descrever o que procurava verificar a ortografia.",
     "seen_items": [
       "há 0 resultados para a sua pesquisa",
       "pode falar connosco através de telefone (custo de uma chamada para a rede fixa nacional, de acordo com o tarifário contratado) ou do formulário de contacto. contactos",
@@ -422,7 +422,7 @@
       "experimente outras maneiras de obter os resultados que procura, como por exemplo:",
       "escrever outras palavras-chave"
     ],
-    "last_changed": "2026-05-18T01:31:32Z",
+    "last_changed": "2026-05-19T01:33:16Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -440,8 +440,8 @@
     "consecutive_failures": 0
   },
   "GoogleNews_DRE_MobilidadeVerde": {
-    "hash": "239ebf8025a70b453c7580e06001e4b78590b0eddb4a75218ab5cb662f20ff50",
-    "text": "byd abre vagas para reparador automotivo, analista de recrutamento e mais funções na bahia; veja como se candidatar - empregos na bahia",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "text": "",
     "seen_items": [
       "byd abre vagas para reparador automotivo, analista de recrutamento e mais funções na bahia; veja como se candidatar - empregos na bahia",
       "app gov.pt recebe finalmente funcionalidade que faz a diferença na vida de milhares de portugueses - 4gnews",
@@ -449,14 +449,14 @@
       "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
       "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale"
     ],
-    "last_changed": "2026-05-18T23:38:53Z",
+    "last_changed": "2026-05-19T01:33:16Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-18T23:38:57Z",
+    "last_run": "2026-05-19T01:33:20Z",
     "email_ok": 2
   }
 }
