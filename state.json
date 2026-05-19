@@ -395,9 +395,10 @@
     "consecutive_failures": 0
   },
   "GoogleNews_Subsidio2026": {
-    "hash": "7a06bcc2db1ecd7b2846d38df9e49fe74027d684d1dd0a1cbec52074fb312027",
-    "text": "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews",
+    "hash": "ad14400043154644583ac1467ecdc0ead9043b55e465e3b2a68f00b7fee79fd8",
+    "text": "apoio financeiro para compra de carros elétricos usados? boa ideia - pplware || apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias || incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews",
     "seen_items": [
+      "apoio financeiro para compra de carros elétricos usados? boa ideia - pplware",
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "incentivos aos elétricos usados? a proposta já está em cima da mesa - 4gnews",
       "carregar o carro elétrico com cabo pela janela é legal? eis a resposta - 4gnews",
@@ -406,10 +407,13 @@
       "isto é o futuro para quem tem carro elétrico: portugal tem de copiar amesterdão - 4gnews",
       "portugal deve apoiar a compra de carros elétricos usados, recomenda agência internacional - away - iol"
     ],
-    "last_changed": "2026-05-16T22:56:26Z",
+    "last_changed": "2026-05-19T05:47:14Z",
     "last_severity": "INFO",
-    "last_evidence": [],
-    "last_reason": "mudança sem item novo (reordenação/cosmético)",
+    "last_evidence": [
+      "carros elétricos",
+      "(1 items novos)"
+    ],
+    "last_reason": "item novo mas sem sinal forte",
     "consecutive_failures": 0
   },
   "ePortugal_IncentivoEV": {
@@ -456,7 +460,7 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-19T01:33:20Z",
+    "last_run": "2026-05-19T05:47:14Z",
     "email_ok": 2
   }
 }
