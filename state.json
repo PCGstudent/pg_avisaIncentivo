@@ -430,7 +430,7 @@
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
-    "consecutive_failures": 0
+    "consecutive_failures": 1
   },
   "GoogleNews_DRE_Aviso": {
     "hash": "3c4a13ef5bfa234a4c2c39c4b60986a3f00b2d7932d8e71728c6886275267e0e",
@@ -460,7 +460,7 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-19T17:23:09Z",
+    "last_run": "2026-05-19T19:23:37Z",
     "email_ok": 2
   }
 }
