@@ -351,18 +351,22 @@
     "consecutive_failures": 0
   },
   "GoogleNews_IncentivoEletrico": {
-    "hash": "60a3b4464e9af162f88129dce01f9b080bd20d26dee3171865c20655a8a45bae",
-    "text": "apoio financeiro para compra de carros elétricos usados? boa ideia - pplware",
+    "hash": "2ebbe02717776d1eb087f734dd4ffb5e7da6d8500a5fbcbe01d060431ab6b467",
+    "text": "apoio financeiro para compra de carros elétricos usados? boa ideia - pplware || governo antecipa novo apoio para compra de carros elétricos - automóvel club de portugal | acp",
     "seen_items": [
       "apoio financeiro para compra de carros elétricos usados? boa ideia - pplware",
+      "governo antecipa novo apoio para compra de carros elétricos - automóvel club de portugal | acp",
       "apoios para carros elétricos: subida do preço dos combustíveis leva governo a antecipar concurso - sic notícias",
       "governo prepara novo apoio para carros elétricos: saiba como garantir 4.000 euros - executive digest",
       "tesla acaba com um dos maiores incentivos para comprar o model 3 em portugal - 4gnews"
     ],
-    "last_changed": "2026-05-20T08:46:09Z",
+    "last_changed": "2026-05-20T19:51:54Z",
     "last_severity": "INFO",
-    "last_evidence": [],
-    "last_reason": "mudança sem item novo (reordenação/cosmético)",
+    "last_evidence": [
+      "carros elétricos",
+      "(1 items novos)"
+    ],
+    "last_reason": "item novo mas sem sinal forte",
     "consecutive_failures": 0
   },
   "GoogleNews_AvisoFundoAmbiental": {
@@ -435,17 +439,18 @@
     "consecutive_failures": 0
   },
   "GoogleNews_DRE_MobilidadeVerde": {
-    "hash": "e8fd3920f0459def98b154873c2c1498daeea9db80498aa10928acb702ce87e6",
-    "text": "centro social e paroquial de rio caldo adquire viatura 100 % elétrica para o serviço de apoio domiciliário - correio do minho || governo corrige em 24 mil euros financiamento do pacote mobilidade verde - sapo",
+    "hash": "f2794f3702b18b116013003968d28757037036c2b402c9f15b063f775c337d48",
+    "text": "centro social e paroquial de rio caldo adquire viatura 100 % elétrica para o serviço de apoio domiciliário - correio do minho || governo corrige em 24 mil euros financiamento do pacote mobilidade verde - jornal pt green || governo corrige em 24 mil euros financiamento do pacote mobilidade verde - sapo",
     "seen_items": [
       "centro social e paroquial de rio caldo adquire viatura 100 % elétrica para o serviço de apoio domiciliário - correio do minho",
+      "governo corrige em 24 mil euros financiamento do pacote mobilidade verde - jornal pt green",
       "governo corrige em 24 mil euros financiamento do pacote mobilidade verde - sapo",
       "byd abre vagas para reparador automotivo, analista de recrutamento e mais funções na bahia; veja como se candidatar - empregos na bahia",
       "app gov.pt recebe finalmente funcionalidade que faz a diferença na vida de milhares de portugueses - 4gnews",
       "incentivo à aquisição de veículos elétricos 2025 e 2026 archives - apcmc",
       "suzuki lança swift com célula de combustível a hidrogênio para 2026 - mix vale"
     ],
-    "last_changed": "2026-05-20T17:31:28Z",
+    "last_changed": "2026-05-20T19:51:51Z",
     "last_severity": "INFO",
     "last_evidence": [
       "mobilidade verde",
@@ -455,7 +460,7 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-20T17:31:32Z",
+    "last_run": "2026-05-20T19:51:55Z",
     "email_ok": 2
   }
 }
