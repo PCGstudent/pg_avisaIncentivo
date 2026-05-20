@@ -375,14 +375,14 @@
     "consecutive_failures": 0
   },
   "GoogleNews_PAEPlus": {
-    "hash": "5d7fb4944dc48d0cd5389a7d851bf7c64a6a2f3637cb590643fd8564f4390b77",
-    "text": "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - msn",
+    "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "text": "",
     "seen_items": [
       "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - msn",
       "governo prepara-se para lançar novo programa de apoio à compra de veículos elétricos - sic notícias",
       "espanha apresenta o plan auto 2030: até 5.500 euros de desconto direto na concessionária - speedme.ru"
     ],
-    "last_changed": "2026-05-19T08:50:01Z",
+    "last_changed": "2026-05-20T11:36:43Z",
     "last_severity": "INFO",
     "last_evidence": [],
     "last_reason": "mudança sem item novo (reordenação/cosmético)",
@@ -451,7 +451,7 @@
     "consecutive_failures": 0
   },
   "_meta": {
-    "last_run": "2026-05-20T08:46:10Z",
+    "last_run": "2026-05-20T11:36:44Z",
     "email_ok": 2
   }
 }
